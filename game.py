@@ -618,6 +618,8 @@ class Game(object):
         agentIndex = self.startingIndex
         numAgents = len( self.agents )
         step = 0
+
+        #NOTE: game loop. We should open the file for writting before this.
         while not self.gameOver:
             # Fetch the next agent
             agent = self.agents[agentIndex]
@@ -721,6 +723,11 @@ class Game(object):
 
             if _BOINC_ENABLED:
                 boinc.set_fraction_done(self.getProgress())
+
+        ######################################################
+        #                 GAME LOOP FINISHED                 #
+        ######################################################
+        # NOTE: close the file with game state
 
         # inform a learning agent of the game result
         for agentIndex, agent in enumerate(self.agents):

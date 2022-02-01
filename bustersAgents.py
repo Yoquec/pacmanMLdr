@@ -232,6 +232,7 @@ class BasicAgentAA(BustersAgent):
         table = table[:-1]
         return table
 
+
     def printInfo(self, gameState):
         print("---------------- TICK ", self.countActions, " --------------------------")
         # Map size
@@ -265,6 +266,8 @@ class BasicAgentAA(BustersAgent):
         
         
     def chooseAction(self, gameState):
+        # TODO: Implement our own intelligent behaviour (needs to eat all the ghosts, would be cool to also eat the point)
+        # NOTE: call python busters.py -p BasicAgentAA -g RandomGhost
         self.countActions = self.countActions + 1
         self.printInfo(gameState)
         move = Directions.STOP
@@ -276,5 +279,12 @@ class BasicAgentAA(BustersAgent):
         if   ( move_random == 3 ) and Directions.SOUTH in legal: move = Directions.SOUTH
         return move
 
-    def printLineData(self, gameState):
+    @staticmethod
+    def printLineData(gameState) -> str :
+        # Tick actual:
+        # self.countActions
+
+        # Screen dimensions
+        print("Oliver:", str(dir(gameState)))
+
         return "XXXXXXXXXX"

@@ -375,12 +375,13 @@ class PacmanRules(object):
     These functions govern how pacman interacts with his environment under
     the classic game rules.
     """
+    @staticmethod
     def getLegalActions( state ):
         """
         Returns a list of possible actions.
         """
         return Actions.getPossibleActions( state.getPacmanState().configuration, state.data.layout.walls )
-    getLegalActions = staticmethod( getLegalActions )
+    # getLegalActions = staticmethod( getLegalActions )
 
     def applyAction( state, action ):
         """
@@ -538,7 +539,7 @@ def readCommand( argv ):
 
     options, otherjunk = parser.parse_args()
     if len(otherjunk) != 0:
-        raise Exception('Command line input not understood: ' + otherjunk)
+        raise Exception('Command line input not understood: ' + str(otherjunk))
     args = dict()
 
     # Fix the random seed
