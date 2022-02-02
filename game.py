@@ -1,5 +1,6 @@
 from __future__ import print_function
 from __future__ import division
+from headers import HEADERS
 # game.py
 # -------
 # Licensing Information:  You are free to use or extend these projects for
@@ -619,8 +620,24 @@ class Game(object):
         numAgents = len( self.agents )
         step = 0
 
+        #TODO:OPEN FILE
+        #NOTE: We first need to check if the file is empty to write any necessary headers
+        with open("textdump.csv", "r") as file_check:
+            if len(file_check.readlines()) == 0:
+                to_write = True
+            else:
+                to_write = False
+
+        # Open the file
+        file_hand = open("textdump.csv", "a")
+
+        # Write header
+        if to_write:
+            file_hand.write(HEADERS)
+
         #NOTE: game loop. We should open the file for writting before this.
         while not self.gameOver:
+            #TODO: call printLineData()
             # Fetch the next agent
             agent = self.agents[agentIndex]
             move_time = 0
@@ -727,7 +744,9 @@ class Game(object):
         ######################################################
         #                 GAME LOOP FINISHED                 #
         ######################################################
-        # NOTE: close the file with game state
+        #TODO:call again printLineData()
+        #NOTE: close the file with game state
+        file_hand.close()
 
         # inform a learning agent of the game result
         for agentIndex, agent in enumerate(self.agents):

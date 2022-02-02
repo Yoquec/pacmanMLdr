@@ -1,4 +1,5 @@
 from __future__ import print_function
+# import csv
 # bustersAgents.py
 # ----------------
 # Licensing Information:  You are free to use or extend these projects for
@@ -239,25 +240,25 @@ class BasicAgentAA(BustersAgent):
         width, height = gameState.data.layout.width, gameState.data.layout.height
         print("Width: ", width, " Height: ", height)
         # Pacman position
-        print("Pacman position: ", gameState.getPacmanPosition())
+        print("Pacman position: ", gameState.getPacmanPosition()) # 
         # Legal actions for Pacman in current position
-        print("Legal actions: ", gameState.getLegalPacmanActions())
+        print("Legal actions: ", gameState.getLegalPacmanActions()) # 
         # Pacman direction
-        print("Pacman direction: ", gameState.data.agentStates[0].getDirection())
+        print("Pacman direction: ", gameState.data.agentStates[0].getDirection()) # (optional)
         # Number of ghosts
         print("Number of ghosts: ", gameState.getNumAgents() - 1)
         # Alive ghosts (index 0 corresponds to Pacman and is always false)
-        print("Living ghosts: ", gameState.getLivingGhosts())
+        print("Living ghosts: ", gameState.getLivingGhosts()) # (optional)
         # Ghosts positions
-        print("Ghosts positions: ", gameState.getGhostPositions())
+        print("Ghosts positions: ", gameState.getGhostPositions()) # 
         # Ghosts directions
         print("Ghosts directions: ", [gameState.getGhostDirections().get(i) for i in range(0, gameState.getNumAgents() - 1)])
         # Manhattan distance to ghosts
-        print("Ghosts distances: ", gameState.data.ghostDistances)
+        print("Ghosts distances: ", gameState.data.ghostDistances) # 
         # Pending pac dots
-        print("Pac dots: ", gameState.getNumFood())
-        # Manhattan distance to the closest pac dot
-        print("Distance nearest pac dots: ", gameState.getDistanceNearestFood())
+        print("Pac dots: ", gameState.getNumFood()) # 
+        # Manhattan distance to the closest pac dots
+        print("Distance nearest pac dots: ", gameState.getDistanceNearestFood()) # 
         # Map walls
         print("Map:")
         print( gameState.getWalls())
@@ -270,6 +271,7 @@ class BasicAgentAA(BustersAgent):
         # NOTE: call python busters.py -p BasicAgentAA -g RandomGhost
         self.countActions = self.countActions + 1
         self.printInfo(gameState)
+        # self.printLineData(gameState)
         move = Directions.STOP
         legal = gameState.getLegalActions(0) ##Legal position from the pacman
         move_random = random.randint(0, 3)
@@ -279,12 +281,18 @@ class BasicAgentAA(BustersAgent):
         if   ( move_random == 3 ) and Directions.SOUTH in legal: move = Directions.SOUTH
         return move
 
-    @staticmethod
-    def printLineData(gameState) -> str :
+    def printLineData(self, gameState) -> str :
+        gameInfo = [
+                str(self.countActions),
+                str((gameState.data.layout.width, gameState.data.layout.height)),
+                str(gameState.getPacmanPosition()),
+                str(gameState.getLegalPacmanActions())
+                ]
         # Tick actual:
-        # self.countActions
+        print(f"tick actual: {self.countActions}")
 
         # Screen dimensions
         print("Oliver:", str(dir(gameState)))
 
-        return "XXXXXXXXXX"
+        returnstr = ",".join(gameInfo)
+        return returnstr
