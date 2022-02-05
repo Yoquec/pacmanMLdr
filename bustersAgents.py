@@ -204,7 +204,7 @@ class GreedyBustersAgent(BustersAgent):
         livingGhostPositionDistributions = \
             [beliefs for i, beliefs in enumerate(self.ghostBeliefs)
              if livingGhosts[i+1]]
-        return Directions.EAST
+        return Directions.NORTH
 
 class BasicAgentAA(BustersAgent):
 
@@ -259,6 +259,7 @@ class BasicAgentAA(BustersAgent):
         print("Pac dots: ", gameState.getNumFood()) # 
         # Manhattan distance to the closest pac dots
         print("Distance nearest pac dots: ", gameState.getDistanceNearestFood()) # 
+        #FIXME: how is the getDistanceNearestFood method implemented??
         # Map walls
         print("Map:")
         print( gameState.getWalls())
@@ -281,18 +282,23 @@ class BasicAgentAA(BustersAgent):
         if   ( move_random == 3 ) and Directions.SOUTH in legal: move = Directions.SOUTH
         return move
 
+    
     def printLineData(self, gameState) -> str :
         gameInfo = [
                 str(self.countActions),
                 str((gameState.data.layout.width, gameState.data.layout.height)),
                 str(gameState.getPacmanPosition()),
-                str(gameState.getLegalPacmanActions())
+                str(gameState.getLegalPacmanActions()),
+                str(gameState.data.agentStates[0].getDirection()),
+                str(gameState.getNumAgents() - 1),
+                str(gameState.getLivingGhosts()),
+                str(gameState.getGhostPositions()),
+                str([gameState.getGhostDirections().get(i) for i in range(0, gameState.getNumAgents() - 1)]),
+                str(gameState.data.ghostDistances),
+                str(gameState.getNumFood()),
+                str(gameState.getDistanceNearestFood()),
+                str(gameState.getScore())
                 ]
-        # Tick actual:
-        print(f"tick actual: {self.countActions}")
-
-        # Screen dimensions
-        print("Oliver:", str(dir(gameState)))
-
-        returnstr = ",".join(gameInfo)
+        
+        returnstr = ",".join(gameInfo) + "\n"
         return returnstr

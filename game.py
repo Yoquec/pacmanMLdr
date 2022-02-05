@@ -1,6 +1,7 @@
 from __future__ import print_function
 from __future__ import division
 from headers import HEADERS
+# from bustersAgents import BasicAgentAA
 # game.py
 # -------
 # Licensing Information:  You are free to use or extend these projects for
@@ -637,7 +638,6 @@ class Game(object):
 
         #NOTE: game loop. We should open the file for writting before this.
         while not self.gameOver:
-            #TODO: call printLineData()
             # Fetch the next agent
             agent = self.agents[agentIndex]
             move_time = 0
@@ -665,6 +665,14 @@ class Game(object):
                 self.unmute()
             else:
                 observation = self.state.deepCopy()
+
+            #TODO: call printLineData()
+            # FIXME: what should be the "agent" to use
+            # FIXME: what is the variable for the gamestate
+            if agentIndex == self.startingIndex:
+                to_write = agent.printLineData(observation)
+                file_hand.write(to_write)
+
             # Solicit an action
             action = None
             step += 1
@@ -745,6 +753,9 @@ class Game(object):
         #                 GAME LOOP FINISHED                 #
         ######################################################
         #TODO:call again printLineData()
+        if agentIndex == self.startingIndex:
+            to_write = agent.printLineData(observation)
+            file_hand.write(to_write)
         #NOTE: close the file with game state
         file_hand.close()
 
