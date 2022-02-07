@@ -11,4 +11,4 @@ The most usefull information would be the pacman position, the position of the g
 
 ## Exercise 3
 
-There are 18 files with different mazes. Our maze is
+There are 18 files with different mazes. Our maze will be
