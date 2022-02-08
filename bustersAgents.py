@@ -284,10 +284,26 @@ class BasicAgentAA(BustersAgent):
 
     
     def printLineData(self, gameState) -> str :
+        # define variable splits
+        pacman_pos = gameState.getPacmanPosition()
+        legal=[False]*5
+        if "North" in gameState.getLegalActions:
+            legal[0]=True
+        if "South" in gameState.getLegalActions:
+            legal[1]=True
+        if "East" in gameState.getLegalActions:
+            legal[2]=True
+        if "West" in gameState.getLegalActions:
+            legal[3]=True
+        if "Stop" in gameState.getLegalActions:
+            legal[4]=True
+        
         gameInfo = [
                 str(self.countActions),
-                str((gameState.data.layout.width, gameState.data.layout.height)),
-                str(gameState.getPacmanPosition()),
+                str(gameState.data.layout.width),
+                str(gameState.data.layout.height),
+                str(pacman_pos[0]),
+                str(pacman_pos[1]),
                 str(gameState.getLegalPacmanActions()),
                 str(gameState.data.agentStates[0].getDirection()),
                 str(gameState.getNumAgents() - 1),

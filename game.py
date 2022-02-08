@@ -666,7 +666,7 @@ class Game(object):
             else:
                 observation = self.state.deepCopy()
 
-            #TODO: call printLineData()
+            # TODO: call printLineData()
             # FIXME: what should be the "agent" to use
             # FIXME: what is the variable for the gamestate
             if agentIndex == self.startingIndex:
@@ -752,10 +752,7 @@ class Game(object):
         ######################################################
         #                 GAME LOOP FINISHED                 #
         ######################################################
-        #TODO:call again printLineData()
-        if agentIndex == self.startingIndex:
-            to_write = agent.printLineData(observation)
-            file_hand.write(to_write)
+
         #NOTE: close the file with game state
         file_hand.close()
 
