@@ -286,28 +286,70 @@ class BasicAgentAA(BustersAgent):
     def printLineData(self, gameState) -> str :
         # define variable splits
         pacman_pos = gameState.getPacmanPosition()
-        legal=[False]*5
-        if "North" in gameState.getLegalActions:
+
+        # Check for legal movements
+            # Create temp bool array
+        legal = [False, False, False, False, False]
+            # Get the game state array for the legal actions
+        observed_legal = gameState.getLegalActions()
+
+        if "North" in observed_legal:
             legal[0]=True
-        if "South" in gameState.getLegalActions:
+        if "South" in observed_legal:
             legal[1]=True
-        if "East" in gameState.getLegalActions:
+        if "East" in observed_legal:
             legal[2]=True
-        if "West" in gameState.getLegalActions:
+        if "West" in observed_legal:
             legal[3]=True
-        if "Stop" in gameState.getLegalActions:
+        if "Stop" in observed_legal:
             legal[4]=True
+
+        # Fix getLivingGhosts()
+            # It returns a list of length getNumAgents()
+            # Where the first element (pacman) is always false
+            # and depending on which ghosts are alive sets a bool
+        ghost_living = [False, False, False, False]
+        ghost_livingState = gameState.getLivingGhosts()
+
+        if ghost_livingState[1]:
+            ghost_living[0] = True
+        if ghost_livingState[2]:
+            ghost_living[1] = True
+        if ghost_livingState[3]:
+            ghost_living[2] = True
+        if ghost_livingState[4]:
+            ghost_living[3] = True
+
+        # Fix ghostPosition 
+            # Ghost positions are stricly positive, so 
+            # negative values will indicate that the ghosts do
+            # not exist
+        ghost_positions = [
+                (-1, -1),
+                (-1, -1),
+                (-1, -1),
+                (-1, -1)
+                ]
+
         
+        # Assamble all the variables
         gameInfo = [
-                str(self.countActions),
-                str(gameState.data.layout.width),
-                str(gameState.data.layout.height),
-                str(pacman_pos[0]),
-                str(pacman_pos[1]),
-                str(gameState.getLegalPacmanActions()),
-                str(gameState.data.agentStates[0].getDirection()),
-                str(gameState.getNumAgents() - 1),
-                str(gameState.getLivingGhosts()),
+                str(self.countActions), #ticks
+                str(gameState.data.layout.width), #screen_dim_x
+                str(gameState.data.layout.height), #screen_dim_y
+                str(pacman_pos[0]), #pacman_pos_x
+                str(pacman_pos[1]), #pacman_pos_y
+                str(legal[0]), #legal_North
+                str(legal[1]), #legal_South
+                str(legal[2]), #legal_East
+                str(legal[3]), #legal_West
+                str(legal[4]), #legal_Stop
+                str(gameState.data.agentStates[0].getDirection()), #pacman_dir
+                str(gameState.getNumAgents() - 1), #ghost_num
+                str(ghost_living[0]), #ghost1_alive
+                str(ghost_living[1]), #ghost2_alive
+                str(ghost_living[2]), #ghost3_alive
+                str(ghost_living[3]), #ghost4_alive
                 str(gameState.getGhostPositions()),
                 str([gameState.getGhostDirections().get(i) for i in range(0, gameState.getNumAgents() - 1)]),
                 str(gameState.data.ghostDistances),
@@ -316,5 +358,6 @@ class BasicAgentAA(BustersAgent):
                 str(gameState.getScore())
                 ]
         
+        # Prepare the string with all the data
         returnstr = ",".join(gameInfo) + "\n"
         return returnstr
