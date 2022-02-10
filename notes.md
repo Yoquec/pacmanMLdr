@@ -1,5 +1,6 @@
 # Notes
 
+## Implementing $A^{*}$
 ### Sacar legal movements
 
 ```{py}
@@ -21,8 +22,12 @@
         return possible
 ```
 
-This method gets called as
+This method gets called as:
 
 ```{py}
 return Actions.getPossibleActions( state.getPacmanState().configuration, state.data.layout.walls )
 ```
+
+#### Take a look at generateSuccessor() [./busters.py 107]
+Not really necessary because A* just gives us our next movement, but does not realize it.
+

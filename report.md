@@ -21,11 +21,13 @@ The most usefull information would be the pacman position, the position of the g
 
 
 ### Exercise 3
+There are 18 files with different mazes. 
+We built a maze called `ourLayout` and put it inside our layouts folder. It consist on a map saying "hello" and "bye" with a square in the middle containing the ghosts.
 
-There are 18 files with different mazes. Our maze will be
-
-## Notes
+<img src="ourLayoutImage.png" alt="ourLayoutImage" width="400"/>
 
 ### Exercise 4
-When we execute  python busters.py -p BasicAgentAA command we can see the terminal with pacman direction, number ghos, living ghost, their positions, directions and distances. It also appears the distance to the nearest pac dot and how many pac dots there are. Also a representation of the map and score. On the interface we just see the game to see the map easily and their positions.
+When we execute  `python busters.py -p BasicAgentAA` command we can see the terminal with pacman direction, number ghost, living ghost, their positions, directions and distances. It also appears the distance to the nearest pac dot and how many pac dots there are. Also a representation of the map and score. On the interface we just see the game to see the map easily and their positions.
 The most useful information in my opinion is the position of the ghost and if they are alived ghosts, to see what you have to focus, their distances and also the map. The score or dots doesn't seems so important in order to win the game.
+
+## Notes

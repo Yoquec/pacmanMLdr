@@ -1,6 +1,5 @@
 from __future__ import print_function
-# import csv
-# bustersAgents.py
+# import csv bustersAgents.py
 # ----------------
 # Licensing Information:  You are free to use or extend these projects for
 # educational purposes provided that (1) you do not distribute or publish
@@ -272,8 +271,10 @@ class BasicAgentAA(BustersAgent):
         # NOTE: call python busters.py -p BasicAgentAA -g RandomGhost
         self.countActions = self.countActions + 1
         self.printInfo(gameState)
-        # self.printLineData(gameState)
+
+        # Default direction
         move = Directions.STOP
+
         legal = gameState.getLegalActions(0) ##Legal position from the pacman
         move_random = random.randint(0, 3)
         if   ( move_random == 0 ) and Directions.WEST in legal:  move = Directions.WEST
@@ -284,7 +285,7 @@ class BasicAgentAA(BustersAgent):
 
     
     def printLineData(self, gameState) -> str :
-        # define variable splits
+        # define variable splits{{{
         pacman_pos = gameState.getPacmanPosition()
 
         # Check for legal movements
@@ -393,4 +394,6 @@ class BasicAgentAA(BustersAgent):
         
         # Prepare the string with all the data
         returnstr = ",".join(gameInfo) + "\n"
-        return returnstr
+        return returnstr# }}}
+
+    
