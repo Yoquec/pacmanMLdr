@@ -1,6 +1,7 @@
 from __future__ import print_function
 from __future__ import division
 from headers import HEADERS
+import os
 # from bustersAgents import BasicAgentAA
 # game.py
 # -------
@@ -622,15 +623,22 @@ class Game(object):
         step = 0
 
         #TODO:OPEN FILE
-        #NOTE: We first need to check if the file is empty to write any necessary headers
-        with open("textdump.csv", "r") as file_check:
-            if len(file_check.readlines()) == 0:
-                to_write = True
-            else:
-                to_write = False
+        #NOTE: We first need to check if the file is empty to write any necessary headers. Also check if it exits
+        CSV_FILE_NAME = "textdump.csv"
+
+        if CSV_FILE_NAME in os.listdir():
+            with open(CSV_FILE_NAME, "r") as file_check:
+                if len(file_check.readlines()) == 0:
+                    to_write = True
+                else:
+                    to_write = False
+        # If file doesn't exist, then create it
+        else:
+            os.mknod(CSV_FILE_NAME)
+            to_write = True
 
         # Open the file
-        file_hand = open("textdump.csv", "a")
+        file_hand = open(CSV_FILE_NAME, "a")
 
         # Write header
         if to_write:

@@ -311,48 +311,81 @@ class BasicAgentAA(BustersAgent):
         ghost_living = [False, False, False, False]
         ghost_livingState = gameState.getLivingGhosts()
 
-        if ghost_livingState[1]:
-            ghost_living[0] = True
-        if ghost_livingState[2]:
-            ghost_living[1] = True
-        if ghost_livingState[3]:
-            ghost_living[2] = True
-        if ghost_livingState[4]:
-            ghost_living[3] = True
+        for i in range(len(ghost_livingState) - 1):
+            if ghost_livingState[i + 1]:
+                ghost_living[i] = True
 
         # Fix ghostPosition 
             # Ghost positions are stricly positive, so 
             # negative values will indicate that the ghosts do
             # not exist
         ghost_positions = [
-                (-1, -1),
-                (-1, -1),
-                (-1, -1),
-                (-1, -1)
+                [-1, -1],
+                [-1, -1],
+                [-1, -1],
+                [-1, -1]
                 ]
+        ghost_positionsState = gameState.getGhostPositions()
+
+            # Change the values in ghost_positions depending on the value of the gameState
+        for i in range(len(ghost_positionsState)):
+            gPos = ghost_positionsState[i]
+
+            for j in range(2):
+                ghost_positions[i][j] = gPos[j]
+
+        # fix getGhostDirections()
+            # Create an array to store the values for all the ghosts
+        ghost_dirs = [None, None, None, None]
+        ghost_dirsState = [gameState.getGhostDirections().get(i) for i in range(0, gameState.getNumAgents() - 1)]
+
+            # Update list values
+        for i in range(len(ghost_dirsState)):
+            ghost_dirs[i] = ghost_dirsState[i]
+
+        # Ghost distances
+            # ghost directions
+        ghost_dist = [-1, -1, -1, -1]
+        ghost_distState = gameState.data.ghostDistances
+            
+        for i in range(len(ghost_distState)):
+            ghost_dist[i] = ghost_distState[i]
 
         
         # Assamble all the variables
-        gameInfo = [
-                str(self.countActions), #ticks
-                str(gameState.data.layout.width), #screen_dim_x
-                str(gameState.data.layout.height), #screen_dim_y
-                str(pacman_pos[0]), #pacman_pos_x
-                str(pacman_pos[1]), #pacman_pos_y
-                str(legal[0]), #legal_North
-                str(legal[1]), #legal_South
-                str(legal[2]), #legal_East
-                str(legal[3]), #legal_West
-                str(legal[4]), #legal_Stop
+        gameInfo = [                                #HEADER_NAME
+                str(self.countActions),             #ticks
+                str(gameState.data.layout.width),   #screen_dim_x
+                str(gameState.data.layout.height),  #screen_dim_y
+                str(pacman_pos[0]),                 #pacman_pos_x
+                str(pacman_pos[1]),                 #pacman_pos_y
+                str(legal[0]),                      #legal_North
+                str(legal[1]),                      #legal_South
+                str(legal[2]),                      #legal_East
+                str(legal[3]),                      #legal_West
+                str(legal[4]),                      #legal_Stop
                 str(gameState.data.agentStates[0].getDirection()), #pacman_dir
-                str(gameState.getNumAgents() - 1), #ghost_num
-                str(ghost_living[0]), #ghost1_alive
-                str(ghost_living[1]), #ghost2_alive
-                str(ghost_living[2]), #ghost3_alive
-                str(ghost_living[3]), #ghost4_alive
-                str(gameState.getGhostPositions()),
-                str([gameState.getGhostDirections().get(i) for i in range(0, gameState.getNumAgents() - 1)]),
-                str(gameState.data.ghostDistances),
+                str(gameState.getNumAgents() - 1),  #ghost_num
+                str(ghost_living[0]),               #ghost1_alive
+                str(ghost_living[1]),               #ghost2_alive
+                str(ghost_living[2]),               #ghost3_alive
+                str(ghost_living[3]),               #ghost4_alive
+                str(ghost_positions[0][0]),         #ghost1_x
+                str(ghost_positions[0][1]),         #ghost1_y
+                str(ghost_positions[1][0]),         #ghost2_x
+                str(ghost_positions[1][1]),         #ghost2_y
+                str(ghost_positions[2][0]),         #ghost3_x
+                str(ghost_positions[2][1]),         #ghost3_y
+                str(ghost_positions[3][0]),         #ghost4_x
+                str(ghost_positions[3][1]),         #ghost4_y
+                str(ghost_dirs[0]),                 #ghost1_dir
+                str(ghost_dirs[1]),                 #ghost2_dir
+                str(ghost_dirs[2]),                 #ghost3_dir
+                str(ghost_dirs[3]),                 #ghost4_dir
+                str(ghost_dist[0]),                 #ghost1_dist
+                str(ghost_dist[1]),                 #ghost2_dist
+                str(ghost_dist[2]),                 #ghost3_dist
+                str(ghost_dist[3]),                 #ghost4_dist
                 str(gameState.getNumFood()),
                 str(gameState.getDistanceNearestFood()),
                 str(gameState.getScore())
