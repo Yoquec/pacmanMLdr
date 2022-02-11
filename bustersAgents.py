@@ -1,4 +1,5 @@
 from __future__ import print_function
+from tkinter.tix import Tree
 from typing import Tuple, List
 # import csv bustersAgents.py
 # ----------------
@@ -395,22 +396,37 @@ class BasicAgentAA(BustersAgent):
         # TODO: Implement our own intelligent behaviour (needs to eat all the ghosts, would be cool to also eat the point)
         # NOTE: call python busters.py -p BasicAgentAA -g RandomGhost
         self.countActions = self.countActions + 1
-        # self.printInfo(gameState)
+        #self.printInfo(gameState)
 
         # NOTE: get the path to get to a ghost
-        path = grid.findPath(gameState.getPacmanPosition(), gameState.getGhostPositions()[1])
-        print(path)
+        alive=[]
+        ghosts=gameState.getLivingGhosts()
+        for i in range(len(ghosts)):
+            if ghosts[i]==True:
+                alive.append(i)
+        
+        #We create the Astar algorithm for all the alive ghosts. Also store lengths
+        paths=[]
+        lengths=[999,999,999,999]
 
+        for i in (alive):
+            paths.append(grid.findPath(gameState.getPacmanPosition(), gameState.getGhostPositions()[i-1]))
+            
+        for i in range(len(alive)):
+            lengths[alive[i]-1]=len(paths[i])
+        #We calculate which is closer acording to the Astar
+        minidx=lengths.index(min(lengths))
+        #We get the index of path
+        pathidx=alive.index(minidx+1)
+        #We select the first movement of the shortest path
+        movimiento=paths[pathidx][0]
+
+            
+        #We calculate which is closer acording to the Astar
+        
         # Default direction
-        move = Directions.STOP
 
-        legal = gameState.getLegalActions(0) ##Legal position from the pacman
-        move_random = random.randint(0, 3)
-        if   ( move_random == 0 ) and Directions.WEST in legal:  move = Directions.WEST
-        if   ( move_random == 1 ) and Directions.EAST in legal: move = Directions.EAST
-        if   ( move_random == 2 ) and Directions.NORTH in legal:   move = Directions.NORTH
-        if   ( move_random == 3 ) and Directions.SOUTH in legal: move = Directions.SOUTH
-        return move
+        return movimiento
 
     
     def printLineData(self, gameState) -> str :
