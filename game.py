@@ -618,6 +618,15 @@ class Game(object):
                 ## TODO: could this exceed the total time
                 self.unmute()
 
+        # NOTE: Create the map grid for th search algorithm
+            """
+            It is called here to avoid being ovewritten
+            by each game loop; to avoid recomputing the node
+            grid each time
+            """
+        import AstarTest
+        Agrid = AstarTest.AstarGrid(self.state.deepCopy())
+
         agentIndex = self.startingIndex
         numAgents = len( self.agents )
         step = 0
@@ -692,7 +701,12 @@ class Game(object):
                         start_time = time.time()
                         if skip_action:
                             raise TimeoutFunctionException()
-                        action = timed_func( observation )
+
+                        #NOTE: Inject map grid to the pacman agent
+                        if agentIndex == self.startingIndex:
+                            action = timed_func( observation, Agrid)
+                        else:
+                            action = timed_func( observation )
                     except TimeoutFunctionException:
                         print("Agent %d timed out on a single move!" % agentIndex, file=sys.stderr)
                         self.agentTimeout = True
@@ -726,7 +740,12 @@ class Game(object):
                     self.unmute()
                     return
             else:
-                action = agent.getAction(observation)
+                #NOTE: Inject the grid again
+                if agentIndex == self.startingIndex:
+                    action = agent.getAction(observation, Agrid)
+                else:
+                    action = agent.getAction(observation)
+
             self.unmute()
 
             # Execute the action
