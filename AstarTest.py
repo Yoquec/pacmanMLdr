@@ -88,21 +88,21 @@ class AstarGrid:
             # To be used when translating positions of nodes to directions
         self.posToDirection = dict([(y, x) for x, y in list(Actions._directions.items())])
         
-
         # add the nodes
         self.addNodes()
-        print([str(self.nodeGrid[x][y]) for x in range(self.mapSize[1]) for y in range(self.mapSize[0])])
+
+
 
     def addNodes(self) -> None:
         """Method to populate the graph with all the walls and walkable paths.
            To be called inside the __init__ method"""
         # Add all the neighbors
-        for j in range(self.mapSize[1]): #y
+        for j in range(self.mapSize[0]): #y
             # For any advancement in the y create a new column in the grid
             self.nodeGrid.append([])
             current_y = self.nodeGrid[j]
-            for i in range(self.mapSize[0]): #x
-                newNode = AstarNode((i,j), self.map[i][j])
+            for i in range(self.mapSize[1]): #x
+                newNode = AstarNode((j,i), self.map[j][i])
                 current_y.append(newNode)
                 
         # NOTE: We do not need to add edges because we can sum values in x or y
@@ -119,10 +119,13 @@ class AstarGrid:
         for dir, vec in Actions._directionsAsList:
             dx, dy = vec
             next_x = x_int + dx
-            if next_x < 0 or next_x == self.mapSize[0]: continue
+            if next_x < 0 or next_x >= self.mapSize[0]: continue
+
             next_y = y_int + dy
-            if next_y < 0 or next_y == self.mapSize[1]: continue
+            if next_y < 0 or next_y >= self.mapSize[1]: continue
+
             if not self.map[next_x][next_y]: neighborNodes.append(self.getNodeFromPos((next_x, next_y)))
+
         return neighborNodes
 
     # def restartHcost(self) -> None:
@@ -169,8 +172,6 @@ class AstarGrid:
 
             # Check if we already arrived to the targetNode
             if currentNode == targetNode:
-                #FIXME
-                print("A path was found")
                 return self.buildPathDirections(startNode, targetNode)
 
             # Get neighbors
@@ -198,8 +199,7 @@ class AstarGrid:
         "Compute the distance vector of two nodes"
         return (pos2[0] - pos1[0], pos2[1] - pos1[1])
 
-    #FIXME: Remove the None from possible return values
-    def buildPathDirections(self, startNode: AstarNode, endNode: AstarNode) -> List[str] | int:
+    def buildPathDirections(self, startNode: AstarNode, endNode: AstarNode) -> List[str]:
         """Method to build a path after the pacman Agent calls 
         findPath from it's position"""
         path: List[AstarNode] = []
@@ -215,24 +215,19 @@ class AstarGrid:
             currentNode = currentNode.parent
 
         # Finally append the initial node
-        # path.append(startNode)
-
-        #FIXME: remove this debug line
-        print([str(i) for i in path[::-1]])
+        path.append(startNode)
 
         # Now we have all the nodes, convert the nodes into directions
         for i in range(len(path) - 1):
             # Get the movement difference between the two nodes
             movement = self.getMovementVector(path[i + 1].pos, path[i].pos)
-            try:
-                # Convert the x, y tuple into a direction (NORTH, SOUTH, etc)
-                pathDir.append(self.posToDirection[movement])
-            except KeyError as e:
-                print(f"Error: {e}")
-                return 3
+            # Convert the x, y tuple into a direction (NORTH, SOUTH, etc)
+            dirMov = self.posToDirection[movement]
+            pathDir.append(dirMov)
+
 
         # Return the reversed list
-        return pathDir
+        return pathDir[::-1]
 
     def convertPathNodesToPathDirections(self, path: List[AstarNode]) -> List[Directions]:
         """Convert a trail of nodes into a direction path that

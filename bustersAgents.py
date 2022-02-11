@@ -397,6 +397,7 @@ class BasicAgentAA(BustersAgent):
         self.countActions = self.countActions + 1
         # self.printInfo(gameState)
 
+        # NOTE: get the path to get to a ghost
         path = grid.findPath(gameState.getPacmanPosition(), gameState.getGhostPositions()[1])
         print(path)
 
