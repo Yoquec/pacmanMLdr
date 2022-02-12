@@ -40,9 +40,13 @@ Done inserted in textdump.csv.
 
 We have created the new method with Astar, which is a method that returns a path for the shortest way to a ghost, after doing it with all the ghost we look for the one that is closer and move in its direction, if for some reason another ghost is closer in the next tick we will swap the target.
 
+With the static it takes 25 ticks.
+
+With the random method it takes around 35/40 ticks.
 # Explanation Astar
 ALVARO checkea
 We transform our map to a matrix to store the distances and wheter they are walls, then from our position we go to the 4 possible moves, when they are legal, and store the distance to the ghost, we just need to keep doing so in the possible moves and not in walls so we will get a path that surrounds the different walls.
+
 
 
 ### Exercise 7
