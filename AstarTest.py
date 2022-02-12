@@ -124,7 +124,10 @@ class AstarGrid:
             next_y = y_int + dy
             if next_y < 0 or next_y >= self.mapSize[1]: continue
 
-            if not self.map[next_x][next_y]: neighborNodes.append(self.getNodeFromPos((next_x, next_y)))
+            #Compute Y values first
+            # if not self.map[next_x][next_y]: neighborNodes.append(self.getNodeFromPos((next_x, next_y)))
+            #Compute X values first
+            if not self.map[next_x][next_y]: neighborNodes.insert(0, self.getNodeFromPos((next_x, next_y)))
 
         return neighborNodes
 

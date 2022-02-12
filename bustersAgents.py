@@ -415,18 +415,18 @@ class BasicAgentAA(BustersAgent):
         for i in range(len(alive)):
             lengths[alive[i]-1]=len(paths[i])
         #We calculate which is closer acording to the Astar
-        minidx=lengths.index(min(lengths))
+        minidx = lengths.index(min(lengths))
         #We get the index of path
-        pathidx=alive.index(minidx+1)
+        pathidx = alive.index(minidx+1)
         #We select the first movement of the shortest path
-        movimiento=paths[pathidx][0]
+        action = paths[pathidx][0]
 
             
         #We calculate which is closer acording to the Astar
         
         # Default direction
 
-        return movimiento
+        return action
 
     
     def printLineData(self, gameState) -> str :
