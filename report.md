@@ -31,3 +31,23 @@ When we execute  `python busters.py -p BasicAgentAA` command we can see the term
 The most useful information in my opinion is the position of the ghost and if they are alived ghosts, to see what you have to focus, their distances and also the map. The score or dots doesn't seems so important in order to win the game.
 
 ## Notes
+
+### Exercise 5
+
+Done inserted in textdump.csv.
+
+### Exercise 6
+
+We have created the new method with Astar, which is a method that returns a path for the shortest way to a ghost, after doing it with all the ghost we look for the one that is closer and move in its direction, if for some reason another ghost is closer in the next tick we will swap the target.
+
+# Explanation Astar
+ALVARO checkea
+We transform our map to a matrix to store the distances and wheter they are walls, then from our position we go to the 4 possible moves, when they are legal, and store the distance to the ghost, we just need to keep doing so in the possible moves and not in walls so we will get a path that surrounds the different walls.
+
+
+### Exercise 7
+
+We think that machine learning could behave in a way where it can predict according to the walls near the ghost the directions that it will take and we can use that to intercept them in their ways instead of going directly to their actual positions
+
+
+
