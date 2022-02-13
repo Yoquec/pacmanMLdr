@@ -5,12 +5,7 @@ This file will include all the necessary elements for the A* search algorithm th
 the pacman will use to hunt down all the ghosts
 """
 from typing import List, Tuple
-
-# import game
-# Actions = game.Actions
-# Directions = game.Directions
 from game import Actions
-from game import Directions
 
 
 import util
@@ -228,17 +223,5 @@ class AstarGrid:
             dirMov = self.posToDirection[movement]
             pathDir.append(dirMov)
 
-
         # Return the reversed list
         return pathDir[::-1]
-
-    def convertPathNodesToPathDirections(self, path: List[AstarNode]) -> List[Directions]:
-        """Convert a trail of nodes into a direction path that
-        Pacman can understand"""
-
-        pathDir: List[Directions] = []
-
-        for i in range(len(path) - 1):
-            path[i]
-
-        return pathDir

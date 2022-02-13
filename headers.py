@@ -1,4 +1,6 @@
 """
+Authors: Alvaro Viejo and Alejandro Mayo
+
 File to get the header files
 """
 header_vals =[
