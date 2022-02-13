@@ -393,10 +393,10 @@ class BasicAgentAA(BustersAgent):
         
     def chooseAction(self, gameState, grid: AstarGrid):
         # NOTE: added grid to be injected to the A*
-        # TODO: Implement our own intelligent behaviour (needs to eat all the ghosts, would be cool to also eat the point)
+    
         # NOTE: call python busters.py -p BasicAgentAA -g RandomGhost
         self.countActions = self.countActions + 1
-        #self.printInfo(gameState)
+        self.printInfo(gameState)
 
         # NOTE: get the path to get to a ghost
         alive=[]

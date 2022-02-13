@@ -159,6 +159,7 @@ class AstarGrid:
                 # for the current node, update it.
                 # If fcosts are equal, compare hCost
                 compareNode = openNodes[i]
+
                 if (compareNode.fCost < currentNode.fCost) or \
                         (compareNode.fCost == currentNode.fCost \
                         and compareNode.hCost < currentNode.hCost):
@@ -179,8 +180,8 @@ class AstarGrid:
                     continue
 
                 # Check if the new path is shorter (or node was unvisited)
-                movementToNeighborCost: int = currentNode.gCost +\
-                        util.manhattanDistance(currentNode.pos, neighbor.pos)
+                movementToNeighborCost: int = currentNode.gCost + 1
+
                 if (movementToNeighborCost < neighbor.gCost) or (neighbor not in openNodes):
                     # Update gCost and hCost
                     neighbor.gCost = movementToNeighborCost
