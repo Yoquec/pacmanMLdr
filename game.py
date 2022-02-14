@@ -687,8 +687,8 @@ class Game(object):
             # FIXME: what should be the "agent" to use
             # FIXME: what is the variable for the gamestate
             if agentIndex == self.startingIndex:
-                to_write = agent.printLineData(observation)
-                file_hand.write(to_write)
+                tickInfo = agent.printLineData(observation)
+                file_hand.write(tickInfo)
 
             # Solicit an action
             action = None

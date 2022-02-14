@@ -50,11 +50,11 @@ The mazes are built by 6 characters: `'%', ' ', '.', 'o', 'P', 'G'`.
 * `P` indicates the **posistion** of the **Pac-man**
 * `G` indicate the **position** of the **ghosts**
 
-![[mazeExample.png]]
+![[mazeExample.png|600]]
 
 We built a maze called `ourLayout` and put it inside our layouts folder. It consist on a map saying "hello" and "bye" with a square in the middle containing the ghosts and a narrow space to fit in between.
 
-![[ourLayoutImage.png]]
+![[ourLayoutImage.png|600]]
 
 
 ### Exercise 4: Execute the agent `BasicAgentAA` with the following command: `python busters.py -p BasicAgentAA`. Describe which information is shown in the screen about the game state. Which information do you consider the most useful?
@@ -66,7 +66,7 @@ On the interface we just see the game as in *Exercise 1*.
 
 The most useful information in our opinion is, as mentioned in *Exercise 2*, **ghost's position, state and distances from Pac-man**, in order to choose a ghost to target. The score or dots doesn't seems so important in order to win the game, but could be useful when training **reinforcement learning models**.
 
-![[tickInfo.png]]
+![[tickInfo.png|300]]
 
 ### Exercise 5: Program a method called `printLineData()` inside the `BasicAgentAA` agent from the `bustersAgents.py` file. This method should return a string with the information from the Pac-Man state ...
 There are 4 important parts to this exercise.
@@ -163,14 +163,16 @@ This same file handler is closed after the game loop finishes.
 file_hand.close()
 ```
 
-the ***fourth and final step*** is to call our function when a new observation is created. This function should be called only by the BasicAgentAA, so we need to check that it is only being called by this agent. This check is performed by `if agentIndex == self.startingIndex:.`
+the ***fourth and final step*** is to call our function when a new observation is created. This function should be called only by BasicAgentAA, so we need to check that it is only being called by this agent. This check is performed by `if agentIndex == self.startingIndex:.`
 
 ```py
 if agentIndex == self.startingIndex:
-	to_write = agent.printLineData(observation)
-	file_hand.write(to_write)
+	tickInfo = agent.printLineData(observation)
+	file_hand.write(tickInfo)
 ```
-In our function we have done the same as for the headers but inserting the game state characteristics at each tick, as we can see below we have included most of the important information.
+
+The function itself has a similar structure and approach to what we did in the `headers.py` file. We first unpack the lists and make some sanity checks, store all the variables by order in an array, and join the elements by commas ',' and end with a newline.
+
 ```py
         # Assamble all the variables
         gameInfo = [                                #HEADER_NAME
@@ -216,14 +218,18 @@ In our function we have done the same as for the headers but inserting the game 
         return returnstr# }}}
 
 ```
-With this we create a file where the first line will always be the header and then we will insert the game status at each tick which can help to recognise patterns or see just how a game has evolved, important to point out that we include each one in a new line and we never errase the data.
+
+Calling this method, we retrieve a file after the runtime where the first line will always be a header line, followed by information about the game status at each tick. We can use this data to recognize patterns and see how a games evolve.
+It should also be point out that we included information of every tick in new lines, following the csv format.
+If this file is not empty, the data of new runtime will be appended without deleting old existing data.
 
 ### Exercise 6: Program an “intelligent” Pac-Man. To do so, modify the method `chooseAction()` from the BasicAgentAA class...
 We have created the new method using an algorithm called Astar.
-We have implemented it in a method which returns the path of the shortest way to any specific cell in the map, assuming that it is not a wall. This method can be called to get the path to any specific ghost.
-We also use this method to get an accurate meassurement of the distance of each ghost taking walls into account. After calling the method all the ghosts, we look for the one that is closest and move torwards its direction. If for some reason another ghost gets closer during the process, the next tick we will change the target to be this new closest ghost.
+It has been  implemented it in a method that returns the path corresponding to the shortest way to any specific cell in the map, assuming that it is not a wall. This method can be called to get the path to any specific ghost.
+We can also use it to get an accurate measurement of the distance tp each of the ghosts when taking walls into account. After calling the method on all the ghosts, we always choose the one that is closest and move towards its direction in order to hunt it down.
+If for some reason another ghost gets closer during the process, next tick it will be swapped as the new target.
 
-To get more information on how we implemented the Astar algorithm, refer to the notes down bellow.
+>To get more information on how we implemented the Astar algorithm, refer to the notes down bellow.
 
 To calculate the ticks that it takes we have done it without specifying any map so using the default map.
 With the static it takes 25 ticks which always is the same amount as there is only one optimized pattern.
@@ -231,9 +237,10 @@ With the static it takes 25 ticks which always is the same amount as there is on
 With the random method it takes around 35 to 45 ticks which isn't very much, obviusly this mean will always be higher than in the static method as the ghost random moves will generate some contrary moves for the pacman agent.
 
 ### Exercise 7: The agent you just programmed does not use any machine learning technique. What advantages do you think machine learning may have to control Pac-Man?
-We think that machine learning could behave in a way where it can predict according to the walls near the ghost the directions that it will take and we can use that to intercept them in their ways instead of going directly to their actual positions.
-Also in some decision instead of the least distance to a ghost it could also take into account where it is more probable that some ghost will be in an specific time, so not focusing in the individuals but on the whole picture and calculating where the ghosts could be and with what probability.
 
+We think that machine learning could behave in a way where it can predict according to the walls near the ghost the directions that it will take and use that to intercept them in their ways instead of going directly to their actual positions.
+
+In other words, machine Learning models will not only move in the shortest paths towards the ghost, but will also take the paths in which ghost are more likely (probable) to take in the long run.
 
 ---
 
@@ -247,11 +254,11 @@ To implement this algorithm we first transformed the map characters into a grid 
 ```py
         import AstarTest
         Agrid = AstarTest.AstarGrid(self.state.deepCopy())
-
 ```
 
-As the import suggests, this classes, both the grid and the nodes are found in the `AstarTest` file. This file contains the classes and the methods necessary to run the algorithm.
-A* runs on the grid of nodes (AstarGrid), and the nodes (AstarNodes) contain some relevant information (such as their parent during the search).
+As the import suggests, this classes, both the grid and the nodes, and their respective methods can be found inside the `AstarTest` file. 
+
+A* runs on a grid of nodes (AstarGrid), whose nodes (AstarNodes) contain relevant information (such as their parent during the search, position, whether or not they are walls, etc).
 
 ```py
 class AstarNode:
@@ -269,7 +276,18 @@ class AstarNode:
 ```
 
 
-The AstarGrid class transforms our map into a matrix where each elemtn on the matrix will be a node object that specifies their positions and more such a boolean to show if they are walls.
+The AstarGrid class transforms our map into a matrix of nodes in order to be able to run traversal and path finding algorithms.
+
+The instance of the grid is created inside `game.py` just after the map has finished creating. It takes a copy of the current state and creates the node grid which stays unchanged for the whole execution time.
+```py
+        import AstarTest
+        Agrid = AstarTest.AstarGrid(self.state.deepCopy())
+```
+
+We can observe inside the `__init__` method that the data structure holding all of the nodes is a list of lists of nodes (matrix of nodes) called `nodeGrid`.
+
+The method also creates an inverted copy of the `Actions._directions.items` dictionary and stores it for use inside the class. 
+
 ```py
 class AstarGrid:
     "Class representing the node grid for the A* pathfinding algorithm"
