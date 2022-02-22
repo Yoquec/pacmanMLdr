@@ -198,7 +198,11 @@ class BustersKeyboardAgent(BustersAgent, KeyboardAgent):
         ghost_distState = gameState.data.ghostDistances
             
         for i in range(len(ghost_distState)):
-            ghost_dist[i] = ghost_distState[i]
+            ghost_dist[i] = ghost_distState[i] if ghost_distState[i] != None else -1 
+
+        # Nearest pacdoct check no None is introduced
+        pacdot_dist = gameState.getDistanceNearestFood()
+        dist_nearest_food = -1 if pacdot_dist is None else pacdot_dist
 
         
         # Assamble all the variables
@@ -236,7 +240,7 @@ class BustersKeyboardAgent(BustersAgent, KeyboardAgent):
                 str(ghost_dist[2]),                 #ghost3_dist
                 str(ghost_dist[3]),                 #ghost4_dist
                 str(gameState.getNumFood()),
-                str(gameState.getDistanceNearestFood()),
+                str(dist_nearest_food),
                 str(gameState.getScore())
                 ]
         
@@ -503,8 +507,11 @@ class BasicAgentAA(BustersAgent):
         ghost_distState = gameState.data.ghostDistances
             
         for i in range(len(ghost_distState)):
-            ghost_dist[i] = ghost_distState[i]
+            ghost_dist[i] = ghost_distState[i] if ghost_distState[i] != None else -1 
 
+        # Nearest pacdoct check no None is introduced
+        pacdot_dist = gameState.getDistanceNearestFood()
+        dist_nearest_food = -1 if pacdot_dist is None else pacdot_dist
         
         # Assamble all the variables
         gameInfo = [                                #HEADER_NAME
@@ -541,7 +548,7 @@ class BasicAgentAA(BustersAgent):
                 str(ghost_dist[2]),                 #ghost3_dist
                 str(ghost_dist[3]),                 #ghost4_dist
                 str(gameState.getNumFood()),
-                str(gameState.getDistanceNearestFood()),
+                str(dist_nearest_food),
                 str(gameState.getScore())
                 ]
         
