@@ -1,6 +1,6 @@
 from __future__ import print_function
 from __future__ import division
-from headers import HEADERS
+from headers import *
 import os
 # from bustersAgents import BasicAgentAA
 # game.py
@@ -633,7 +633,7 @@ class Game(object):
 
         #TODO:OPEN FILE
         #NOTE: We first need to check if the file is empty to write any necessary headers. Also check if it exits
-        CSV_FILE_NAME = "textdump.csv"
+        CSV_FILE_NAME = "textdump.arff"
 
         if CSV_FILE_NAME in os.listdir():
             with open(CSV_FILE_NAME, "r") as file_check:
@@ -651,7 +651,8 @@ class Game(object):
 
         # Write header
         if to_write:
-            file_hand.write(HEADERS)
+            CSV_HEADERS = generateArffHeaders(CSV_FILE_NAME)
+            file_hand.write(CSV_HEADERS)
 
         #NOTE: game loop. We should open the file for writting before this.
         while not self.gameOver:
@@ -687,7 +688,7 @@ class Game(object):
             # FIXME: what should be the "agent" to use
             # FIXME: what is the variable for the gamestate
             if agentIndex == self.startingIndex:
-                tickInfo = agent.printLineData(observation)
+                tickInfo = agent.printLineDataArff(observation)
                 file_hand.write(tickInfo)
 
             # Solicit an action

@@ -120,10 +120,16 @@ class BustersKeyboardAgent(BustersAgent, KeyboardAgent):
     # def getAction(self, gameState):
     #     return BustersAgent.getAction(self, gameState)
     def getAction(self, gameState, grid: AstarGrid):
-        "Redefined getAction method to include the map grid"
-        return self.chooseAction(gameState, grid)
+        """Redefined getAction method to include the map grid. If it receives it,
+        delete it"""
+        if "Agrid" in globals() or "Agrid" in locals():
+            del grid
+
+        return self.chooseAction(gameState)
 
     def chooseAction(self, gameState):
+        # Count a new action
+        self.countActions += 1
         return KeyboardAgent.getAction(self, gameState)
 
     def printLineData(self, gameState) -> str :
@@ -237,6 +243,11 @@ class BustersKeyboardAgent(BustersAgent, KeyboardAgent):
         # Prepare the string with all the data
         returnstr = ",".join(gameInfo) + "\n"
         return returnstr# }}}
+
+    def printLineDataArff(self, gameState) -> str:
+        # It will be the same method, but leaving a space between commas
+        # as the adult-data.arff file shows (not necessary though)
+        return self.printLineData(gameState).replace(",", ", ")
 
 from distanceCalculator import Distancer
 from game import Actions
@@ -392,7 +403,7 @@ class BasicAgentAA(BustersAgent):
         
         
     def chooseAction(self, gameState, grid: AstarGrid):
-        # NOTE: added grid to be injected to the A*
+        # NOTE: added grid to be injected to the A*{{{
     
         # NOTE: call python busters.py -p BasicAgentAA -g RandomGhost
         self.countActions = self.countActions + 1
@@ -422,11 +433,8 @@ class BasicAgentAA(BustersAgent):
         action = paths[pathidx][0]
 
             
-        #We calculate which is closer acording to the Astar
-        
-        # Default direction
-
-        return action
+        #We thus calculated which is closer acording to Astar
+        return action# }}}
 
     
     def printLineData(self, gameState) -> str :
@@ -540,3 +548,8 @@ class BasicAgentAA(BustersAgent):
         # Prepare the string with all the data
         returnstr = ",".join(gameInfo) + "\n"
         return returnstr# }}}
+
+    def printLineDataArff(self, gameState) -> str:
+        # It will be the same method, but leaving a space between commas
+        # as the adult-data.arff file shows (not necessary though)
+        return self.printLineData(gameState).replace(",", ", ")

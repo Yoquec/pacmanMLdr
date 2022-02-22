@@ -3,42 +3,55 @@ Authors: Alvaro Viejo and Alejandro Mayo
 
 File to get the header files
 """
-header_vals =[
-        "ticks",
-        "screen_dim_x",
-        "screen_dim_y",
-        "pacman_pos_x",
-        "pacman_pos_y",
-        "legal_North",
-        "legal_South",
-        "legal_East",
-        "legal_West",
-        "legal_Stop",
-        "pacman_dir",
-        "ghost_num",
-        "ghost1_alive",
-        "ghost2_alive",
-        "ghost3_alive",
-        "ghost4_alive",
-        "ghost1_x",
-        "ghost1_y",
-        "ghost2_x",
-        "ghost2_y",
-        "ghost3_x",
-        "ghost3_y",
-        "ghost4_x",
-        "ghost4_y",
-        "ghost1_dir",
-        "ghost2_dir",
-        "ghost3_dir",
-        "ghost4_dir",
-        "ghost1_dist",
-        "ghost2_dist",
-        "ghost3_dist",
-        "ghost4_dist",
-        "pacdots_remaining",
-        "nearestpacdot_dist",
-        "score"
-        ]
+header_vals = {
+        "ticks": "NUMERIC",
+        "screen_dim_x": "NUMERIC",
+        "screen_dim_y": "NUMERIC",
+        "pacman_pos_x": "NUMERIC",
+        "pacman_pos_y": "NUMERIC",
+        "legal_North": "{False, True}",
+        "legal_South": "{False, True}",
+        "legal_East": "{False, True}",
+        "legal_West": "{False, True}",
+        "legal_Stop": "{False, True}",
+        "pacman_dir": "{East, North, South, Stop, West}",
+        "ghost_num": "NUMERIC",
+        "ghost1_alive": "{False, True}",
+        "ghost2_alive": "{False, True}",
+        "ghost3_alive": "{False, True}",
+        "ghost4_alive": "{False, True}",
+        "ghost1_x": "NUMERIC",
+        "ghost1_y": "NUMERIC",
+        "ghost2_x": "NUMERIC",
+        "ghost2_y": "NUMERIC",
+        "ghost3_x": "NUMERIC",
+        "ghost3_y": "NUMERIC",
+        "ghost4_x": "NUMERIC",
+        "ghost4_y": "NUMERIC",
+        "ghost1_dir": "{East, North, South, Stop, West, None}",
+        "ghost2_dir": "{East, North, South, Stop, West, None}",
+        "ghost3_dir": "{East, North, South, Stop, West, None}",
+        "ghost4_dir": "{East, North, South, Stop, West, None}",
+        "ghost1_dist": "NUMERIC",
+        "ghost2_dist": "NUMERIC",
+        "ghost3_dist": "NUMERIC",
+        "ghost4_dist": "NUMERIC",
+        "pacdots_remaining": "NUMERIC",
+        "nearestpacdot_dist": "NUMERIC",
+        "score": "NUMERIC"
+        }
 
-HEADERS = ','.join(header_vals) + "\n"
+# CSV_HEADERS = ','.join(header_vals.keys()) + "\n"
+
+def generateArffHeaders(relationName: str) -> str:
+    # Create the header with the relation name
+    arffHeaders = f"@RELATION {relationName}\n\n"
+
+    # Add the headers with the attributes and their types
+    for key, val in zip(header_vals.keys(), header_vals.values()):
+        arffHeaders += f"   @ATTRIBUTE {key} {val}\n"
+
+    # Add the start data section header
+    arffHeaders += "\n   @data\n"
+
+    return arffHeaders

@@ -106,7 +106,7 @@ class AstarGrid:
     def getNodeFromPos(self, pos: Tuple[int, int]):
         return self.nodeGrid[pos[0]][pos[1]]
 
-    def getNodeLegalNeighbors(self, node): #Get walls from self.map
+    def getNodeLegalNeighbors(self, node) -> List[AstarNode]: #Get walls from self.map
         """Get legal neighboring nodes from a specified node"""
         x,y = node.pos
         x_int, y_int = int(x + 0.5), int(y + 0.5)
