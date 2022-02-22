@@ -24,3 +24,26 @@ We can see it being very useful when approaching the design of a classifier befo
 <br>
 
 ## Exercise 2: Experimenter
+### Implementing the new printLineData function
+In order to make the `printLineData()` function work, we needed to modify the `headers.py` file to introduce a method that creates **Weka**'s `.arff` file headers (@RELATION, @ATTRIBUTE, etc). This new method was called `generateArffHeaders()` and is called the same way we added the headers for the csv files in `game.py`.
+
+It is important to note that we converted the `header_vals` list to be a dictionary containing the name of the header as the key, and the type of **Weka** variable (`NUMERIC` or set of possible values) so that everything is procedurally printed and formatted by the method:
+
+```py
+def generateArffHeaders(relationName: str) -> str:
+    # Create the header with the relation name
+    arffHeaders = f"@RELATION {relationName}\n\n"
+
+    # Add the headers with the attributes and their types
+    for key, val in zip(header_vals.keys(), header_vals.values()):
+        arffHeaders += f"   @ATTRIBUTE {key} {val}\n"
+
+    # Add the start data section header
+    arffHeaders += "\n   @data\n"
+
+    return arffHeaders
+```
+
+`printLineData()` itself received no modifications more than a few checks so that in `NUMERIC` variables a `-1` appeared instead of a `None`, which if not changed, would make Weka incapable of reading the generated files.
+
+Unfortunately, we had to copy the whole `printLineData()` method over to the `KeyboardAgent` class, instead of making it a `@classmethod` for the `BasicAgentAA` to be accessed from outside the class. This could be possible because in order to record the tick number, we had to access the `self.countActions` attribute of the class, which would always be 0 because it wouldn't even be an instance.
