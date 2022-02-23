@@ -38,7 +38,8 @@ header_vals = {
         "ghost4_dist": "NUMERIC",
         "pacdots_remaining": "NUMERIC",
         "nearestpacdot_dist": "NUMERIC",
-        "score": "NUMERIC"
+        "score": "NUMERIC",
+        "pacman_action": "{East, North, South, Stop, West, None}"
         }
 
 # CSV_HEADERS = ','.join(header_vals.keys()) + "\n"

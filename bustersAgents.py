@@ -132,7 +132,7 @@ class BustersKeyboardAgent(BustersAgent, KeyboardAgent):
         self.countActions += 1
         return KeyboardAgent.getAction(self, gameState)
 
-    def printLineData(self, gameState) -> str :
+    def printLineData(self, gameState, action: str) -> str :
         # define variable splits{{{
         pacman_pos = gameState.getPacmanPosition()
 
@@ -241,17 +241,18 @@ class BustersKeyboardAgent(BustersAgent, KeyboardAgent):
                 str(ghost_dist[3]),                 #ghost4_dist
                 str(gameState.getNumFood()),
                 str(dist_nearest_food),
-                str(gameState.getScore())
+                str(gameState.getScore()),
+                str(action)
                 ]
         
         # Prepare the string with all the data
         returnstr = ",".join(gameInfo) + "\n"
         return returnstr# }}}
 
-    def printLineDataArff(self, gameState) -> str:
+    def printLineDataArff(self, gameState, action: str) -> str:
         # It will be the same method, but leaving a space between commas
         # as the adult-data.arff file shows (not necessary though)
-        return self.printLineData(gameState).replace(",", ", ")
+        return self.printLineData(gameState, action).replace(",", ", ")
 
 from distanceCalculator import Distancer
 from game import Actions

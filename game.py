@@ -684,12 +684,7 @@ class Game(object):
             else:
                 observation = self.state.deepCopy()
 
-            # TODO: call printLineData()
-            # FIXME: what should be the "agent" to use
-            # FIXME: what is the variable for the gamestate
-            if agentIndex == self.startingIndex:
-                tickInfo = agent.printLineDataArff(observation)
-                file_hand.write(tickInfo)
+            
 
             # Solicit an action
             action = None
@@ -746,6 +741,12 @@ class Game(object):
                     action = agent.getAction(observation, Agrid)
                 else:
                     action = agent.getAction(observation)
+
+            # TODO: call printLineData()
+            # FIXME: what is the variable for the gamestate
+            if agentIndex == self.startingIndex:
+                tickInfo = agent.printLineDataArff(observation, action) # sii pero ahora lo cambiamos
+                file_hand.write(tickInfo) #ya esta
 
             self.unmute()
 
