@@ -24,7 +24,8 @@ We can see it being very useful when approaching the design of a classifier befo
 <br>
 
 ## Exercise 2: Experimenter
-### Implementing the new printLineData function
+### 2.1 Pac-Man data generation and pre-processing
+#### Implementing the new printLineData function
 In order to make the `printLineData()` function work, we needed to modify the `headers.py` file to introduce a method that creates **Weka**'s `.arff` file headers (@RELATION, @ATTRIBUTE, etc). This new method was called `generateArffHeaders()` and is called the same way we added the headers for the csv files in `game.py`.
 
 It is important to note that we converted the `header_vals` list to be a dictionary containing the name of the header as the key, and the type of **Weka** variable (`NUMERIC` or set of possible values) so that everything is procedurally printed and formatted by the method:
@@ -47,3 +48,15 @@ def generateArffHeaders(relationName: str) -> str:
 `printLineData()` itself received no modifications more than a few checks so that in `NUMERIC` variables a `-1` appeared instead of a `None`, which if not changed, would make Weka incapable of reading the generated files.
 
 Unfortunately, we had to copy the whole `printLineData()` method over to the `KeyboardAgent` class, instead of making it a `@classmethod` for the `BasicAgentAA` to be accessed from outside the class. This could be possible because in order to record the tick number, we had to access the `self.countActions` attribute of the class, which would always be 0 because it wouldn't even be an instance.
+
+#### Generate two new files from the one you just have created. On each of them you should select a subset of different attributes.
+In relation to the last section, as we have to generate data with the purpose of predicting Pac-man's current movement, we changed where we placed our `printLineData()` method inside the `game.py` file.
+
+We noticed that we called the method before Pac-man's action was chosen for that particular turn. If we hadn't changed it, we will be scraping last tick's movement instead of the current tick's. 
+
+That's why when filtering the two `.arff` files, we removed the variable `pacman_dir` and left the variable `pacman_action`, as it was the updated one.
+
+#TODO Mayo explica que has hecho. También explica porque hemos quitado la antigua posición del pacman y nos hemos quedado con la nueva
+
+### 2.2 Design and execution of the experiment
+#TODO decir como se llama el nombre del experiment.
