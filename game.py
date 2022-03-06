@@ -745,7 +745,7 @@ class Game(object):
             # TODO: call printLineData()
             # FIXME: what is the variable for the gamestate
             if agentIndex == self.startingIndex:
-                tickInfo = agent.printLineDataArff(observation, action) # sii pero ahora lo cambiamos
+                tickInfo, curScore = agent.printLineDataArff(observation, action) # sii pero ahora lo cambiamos
                 file_hand.write(tickInfo) #ya esta
 
             self.unmute()
@@ -782,7 +782,10 @@ class Game(object):
         #                 GAME LOOP FINISHED                 #
         ######################################################
 
-        #NOTE: close the file with game state
+        #NOTE: close the file with game state, but first end the last line
+        # will always be +199 because the game ends when all the ghosts have been
+        # eaten, which will always be +200 - 1 from the tick reduction
+        file_hand.write(f", {curScore + 199}\n")
         file_hand.close()
 
         # inform a learning agent of the game result

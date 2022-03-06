@@ -109,30 +109,7 @@ class BustersAgent(object):
         "By default, a BustersAgent just stops.  This should be overridden."
         return Directions.STOP
 
-class BustersKeyboardAgent(BustersAgent, KeyboardAgent):
-    "An agent controlled by the keyboard that displays beliefs about ghost positions."
-
-    def __init__(self, index = 0, inference = "KeyboardInference", ghostAgents = None):
-        KeyboardAgent.__init__(self, index)
-        BustersAgent.__init__(self, index, inference, ghostAgents)
-        self.countActions = 0
-
-    # def getAction(self, gameState):
-    #     return BustersAgent.getAction(self, gameState)
-    def getAction(self, gameState, grid: AstarGrid):
-        """Redefined getAction method to include the map grid. If it receives it,
-        delete it"""
-        if "Agrid" in globals() or "Agrid" in locals():
-            del grid
-
-        return self.chooseAction(gameState)
-
-    def chooseAction(self, gameState):
-        # Count a new action
-        self.countActions += 1
-        return KeyboardAgent.getAction(self, gameState)
-
-    def printLineData(self, gameState, action: str) -> str :
+    def printLineData(self, gameState, action: str):
         # define variable splits{{{
         pacman_pos = gameState.getPacmanPosition()
 
@@ -246,13 +223,44 @@ class BustersKeyboardAgent(BustersAgent, KeyboardAgent):
                 ]
         
         # Prepare the string with all the data
-        returnstr = ",".join(gameInfo) + "\n"
-        return returnstr# }}}
+        if self.countActions != 1:
+            returnstr = f",{str(gameState.getScore())}\n"
+            returnstr += ",".join(gameInfo)
+        else:
+            returnstr = ",".join(gameInfo)
+        return (returnstr, gameState.getScore()) # }}}
 
-    def printLineDataArff(self, gameState, action: str) -> str:
+    def printLineDataArff(self, gameState, action: str):
         # It will be the same method, but leaving a space between commas
         # as the adult-data.arff file shows (not necessary though)
-        return self.printLineData(gameState, action).replace(",", ", ")
+        call = self.printLineData(gameState, action)
+        return (call[0].replace(",", ", "), call[1])
+
+
+class BustersKeyboardAgent(BustersAgent, KeyboardAgent):
+    "An agent controlled by the keyboard that displays beliefs about ghost positions."
+
+    def __init__(self, index = 0, inference = "KeyboardInference", ghostAgents = None):
+        KeyboardAgent.__init__(self, index)
+        BustersAgent.__init__(self, index, inference, ghostAgents)
+        self.countActions = 0
+
+    # def getAction(self, gameState):
+    #     return BustersAgent.getAction(self, gameState)
+    def getAction(self, gameState, grid: AstarGrid):
+        """Redefined getAction method to include the map grid. If it receives it,
+        delete it"""
+        if "Agrid" in globals() or "Agrid" in locals():
+            del grid
+
+        return self.chooseAction(gameState)
+
+    def chooseAction(self, gameState):
+        # Count a new action
+        self.countActions += 1
+        return KeyboardAgent.getAction(self, gameState)
+
+
 
 from distanceCalculator import Distancer
 from game import Actions
@@ -440,124 +448,3 @@ class BasicAgentAA(BustersAgent):
             
         #We thus calculated which is closer acording to Astar
         return action# }}}
-
-    
-    def printLineData(self, gameState) -> str :
-        # define variable splits{{{
-        pacman_pos = gameState.getPacmanPosition()
-
-        # Check for legal movements
-            # Create temp bool array
-        legal = [False, False, False, False, False]
-            # Get the game state array for the legal actions
-        observed_legal = gameState.getLegalActions()
-
-        if "North" in observed_legal:
-            legal[0]=True
-        if "South" in observed_legal:
-            legal[1]=True
-        if "East" in observed_legal:
-            legal[2]=True
-        if "West" in observed_legal:
-            legal[3]=True
-        if "Stop" in observed_legal:
-            legal[4]=True
-
-        # Fix getLivingGhosts()
-            # It returns a list of length getNumAgents()
-            # Where the first element (pacman) is always false
-            # and depending on which ghosts are alive sets a bool
-        ghost_living = [False, False, False, False]
-        ghost_livingState = gameState.getLivingGhosts()
-
-        for i in range(len(ghost_livingState) - 1):
-            if ghost_livingState[i + 1]:
-                ghost_living[i] = True
-
-        # Fix ghostPosition 
-            # Ghost positions are stricly positive, so 
-            # negative values will indicate that the ghosts do
-            # not exist
-        ghost_positions = [
-                [-1, -1],
-                [-1, -1],
-                [-1, -1],
-                [-1, -1]
-                ]
-        ghost_positionsState = gameState.getGhostPositions()
-
-            # Change the values in ghost_positions depending on the value of the gameState
-        for i in range(len(ghost_positionsState)):
-            gPos = ghost_positionsState[i]
-
-            for j in range(2):
-                ghost_positions[i][j] = gPos[j]
-
-        # fix getGhostDirections()
-            # Create an array to store the values for all the ghosts
-        ghost_dirs = [None, None, None, None]
-        ghost_dirsState = [gameState.getGhostDirections().get(i) for i in range(0, gameState.getNumAgents() - 1)]
-
-            # Update list values
-        for i in range(len(ghost_dirsState)):
-            ghost_dirs[i] = ghost_dirsState[i]
-
-        # Ghost distances
-            # ghost directions
-        ghost_dist = [-1, -1, -1, -1]
-        ghost_distState = gameState.data.ghostDistances
-            
-        for i in range(len(ghost_distState)):
-            ghost_dist[i] = ghost_distState[i] if ghost_distState[i] != None else -1 
-
-        # Nearest pacdoct check no None is introduced
-        pacdot_dist = gameState.getDistanceNearestFood()
-        dist_nearest_food = -1 if pacdot_dist is None else pacdot_dist
-        
-        # Assamble all the variables
-        gameInfo = [                                #HEADER_NAME
-                str(self.countActions),             #ticks
-                str(gameState.data.layout.width),   #screen_dim_x
-                str(gameState.data.layout.height),  #screen_dim_y
-                str(pacman_pos[0]),                 #pacman_pos_x
-                str(pacman_pos[1]),                 #pacman_pos_y
-                str(legal[0]),                      #legal_North
-                str(legal[1]),                      #legal_South
-                str(legal[2]),                      #legal_East
-                str(legal[3]),                      #legal_West
-                str(legal[4]),                      #legal_Stop
-                str(gameState.data.agentStates[0].getDirection()), #pacman_dir
-                str(gameState.getNumAgents() - 1),  #ghost_num
-                str(ghost_living[0]),               #ghost1_alive
-                str(ghost_living[1]),               #ghost2_alive
-                str(ghost_living[2]),               #ghost3_alive
-                str(ghost_living[3]),               #ghost4_alive
-                str(ghost_positions[0][0]),         #ghost1_x
-                str(ghost_positions[0][1]),         #ghost1_y
-                str(ghost_positions[1][0]),         #ghost2_x
-                str(ghost_positions[1][1]),         #ghost2_y
-                str(ghost_positions[2][0]),         #ghost3_x
-                str(ghost_positions[2][1]),         #ghost3_y
-                str(ghost_positions[3][0]),         #ghost4_x
-                str(ghost_positions[3][1]),         #ghost4_y
-                str(ghost_dirs[0]),                 #ghost1_dir
-                str(ghost_dirs[1]),                 #ghost2_dir
-                str(ghost_dirs[2]),                 #ghost3_dir
-                str(ghost_dirs[3]),                 #ghost4_dir
-                str(ghost_dist[0]),                 #ghost1_dist
-                str(ghost_dist[1]),                 #ghost2_dist
-                str(ghost_dist[2]),                 #ghost3_dist
-                str(ghost_dist[3]),                 #ghost4_dist
-                str(gameState.getNumFood()),
-                str(dist_nearest_food),
-                str(gameState.getScore())
-                ]
-        
-        # Prepare the string with all the data
-        returnstr = ",".join(gameInfo) + "\n"
-        return returnstr# }}}
-
-    def printLineDataArff(self, gameState) -> str:
-        # It will be the same method, but leaving a space between commas
-        # as the adult-data.arff file shows (not necessary though)
-        return self.printLineData(gameState).replace(",", ", ")
