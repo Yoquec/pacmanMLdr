@@ -19,6 +19,14 @@ def askForInt(prompt:str , errorMsgAssert: str="", errorMsgVal: str="") -> int:
     return outInt
 
 def chooseMaps(fileNameCode: int):
+    if fileNameCode == 1:
+        pass
+    elif fileNameCode == 2:
+        pass
+    elif fileNameCode == 2:
+        pass
+    else:
+        legalMaps = ["oneHunt"]
     raise NotImplementedError
 
 def modifyGamePy(fileName:str):
@@ -36,7 +44,7 @@ if __name__ == "__main__":
     
 
     # Get the available maps
-    lays = os.listdir("layouts/")
+    possibleMaps = [i.replace(".lay", "") for i in os.listdir("layouts/")]
 
     # Ask for the file to write everything in:
     fileNameMsg = """
