@@ -21,14 +21,15 @@ def askForInt(prompt:str , errorMsgAssert: str="", errorMsgVal: str="") -> int:
     return outInt
 
 def choosePossibleMaps(fileNameCode: int) -> List[str]:
-    possibleMaps = ["openHunt", "openClassic", "sixHunt", "capsuleClassic", "contestClassic"]
+    possibleMapsTrain = ["originalClassic", "openClassic", "sixHunt", "20Hunt", "contestClassic"]
+    possibleMapsTest = ["trickyClassic", "openHunt", "smallClassic", "capsuleClassic", "trappedClassic"]
 
     if fileNameCode == 1:
-        legalMaps = possibleMaps
+        legalMaps = possibleMapsTrain
     elif fileNameCode == 2:
         legalMaps = ["oneHunt"]
-    elif fileNameCode == 2:
-        legalMaps = possibleMaps
+    elif fileNameCode == 3:
+        legalMaps = possibleMapsTest
     else:
         legalMaps = ["oneHunt"]
 
