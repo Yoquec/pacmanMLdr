@@ -27,7 +27,7 @@ def choosePossibleMaps(fileNameCode: int) -> List[str]:
     if fileNameCode == 1:
         legalMaps = possibleMapsTrain
     elif fileNameCode == 2:
-        legalMaps = ["oneHunt"]
+        legalMaps = possibleMapsTrain
     elif fileNameCode == 3:
         legalMaps = possibleMapsTest
     else:
