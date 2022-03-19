@@ -1,0 +1,191 @@
+{
+	"flow_name" : "diffCreator",
+	"steps" : [
+		{
+			"class" : "weka.knowledgeflow.steps.Loader",
+			"properties" : {
+				"loader" : {
+					"type" : "loader",
+					"class" : "weka.core.converters.ArffLoader",
+					"filePath" : "/home/yoquec/code/python/Machine Learning/pacmanMLdr/training_tutorial1_removedattrs.arff",
+					"useRelativePath" : false
+				},
+				"name" : "ArffLoader"
+			},
+			"connections" : {
+				"dataSet" : [
+					"ClassAssigner"
+				]
+			},
+			"coordinates" : "123,63"
+		},
+		{
+			"class" : "weka.knowledgeflow.steps.Filter",
+			"properties" : {
+				"filter" : {
+					"type" : "optionHandler",
+					"class" : "weka.filters.unsupervised.attribute.AddExpression",
+					"options" : "-E a12-a1 -N diff1_x"
+				},
+				"name" : "AddExpression"
+			},
+			"connections" : {
+				"dataSet" : [
+					"AddExpression2"
+				]
+			},
+			"coordinates" : "117,180"
+		},
+		{
+			"class" : "weka.knowledgeflow.steps.ClassAssigner",
+			"properties" : {
+				"classColumn" : "pacman_action",
+				"name" : "ClassAssigner"
+			},
+			"connections" : {
+				"dataSet" : [
+					"AddExpression"
+				]
+			},
+			"coordinates" : "344,69"
+		},
+		{
+			"class" : "weka.knowledgeflow.steps.Filter",
+			"properties" : {
+				"filter" : {
+					"type" : "optionHandler",
+					"class" : "weka.filters.unsupervised.attribute.AddExpression",
+					"options" : "-E a14-a1 -N diff2_x"
+				},
+				"name" : "AddExpression2"
+			},
+			"connections" : {
+				"dataSet" : [
+					"AddExpression3"
+				]
+			},
+			"coordinates" : "341,183"
+		},
+		{
+			"class" : "weka.knowledgeflow.steps.Filter",
+			"properties" : {
+				"filter" : {
+					"type" : "optionHandler",
+					"class" : "weka.filters.unsupervised.attribute.AddExpression",
+					"options" : "-E a16-a1 -N diff3_x"
+				},
+				"name" : "AddExpression3"
+			},
+			"connections" : {
+				"dataSet" : [
+					"AddExpression4"
+				]
+			},
+			"coordinates" : "120,302"
+		},
+		{
+			"class" : "weka.knowledgeflow.steps.Filter",
+			"properties" : {
+				"filter" : {
+					"type" : "optionHandler",
+					"class" : "weka.filters.unsupervised.attribute.AddExpression",
+					"options" : "-E a18-a1 -N diff4_x"
+				},
+				"name" : "AddExpression4"
+			},
+			"connections" : {
+				"dataSet" : [
+					"AddExpression5"
+				]
+			},
+			"coordinates" : "356,301"
+		},
+		{
+			"class" : "weka.knowledgeflow.steps.Filter",
+			"properties" : {
+				"filter" : {
+					"type" : "optionHandler",
+					"class" : "weka.filters.unsupervised.attribute.AddExpression",
+					"options" : "-E a13-a2 -N diff1_y"
+				},
+				"name" : "AddExpression5"
+			},
+			"connections" : {
+				"dataSet" : [
+					"AddExpression6"
+				]
+			},
+			"coordinates" : "130,439"
+		},
+		{
+			"class" : "weka.knowledgeflow.steps.Filter",
+			"properties" : {
+				"filter" : {
+					"type" : "optionHandler",
+					"class" : "weka.filters.unsupervised.attribute.AddExpression",
+					"options" : "-E a15-a2 -N diff2_y"
+				},
+				"name" : "AddExpression6"
+			},
+			"connections" : {
+				"dataSet" : [
+					"AddExpression7"
+				]
+			},
+			"coordinates" : "366,444"
+		},
+		{
+			"class" : "weka.knowledgeflow.steps.Filter",
+			"properties" : {
+				"filter" : {
+					"type" : "optionHandler",
+					"class" : "weka.filters.unsupervised.attribute.AddExpression",
+					"options" : "-E a17-a2 -N diff3_y"
+				},
+				"name" : "AddExpression7"
+			},
+			"connections" : {
+				"dataSet" : [
+					"AddExpression8"
+				]
+			},
+			"coordinates" : "138,586"
+		},
+		{
+			"class" : "weka.knowledgeflow.steps.Filter",
+			"properties" : {
+				"filter" : {
+					"type" : "optionHandler",
+					"class" : "weka.filters.unsupervised.attribute.AddExpression",
+					"options" : "-E a19-a2 -N diff4_y"
+				},
+				"name" : "AddExpression8"
+			},
+			"connections" : {
+				"dataSet" : [
+					"ArffSaver"
+				]
+			},
+			"coordinates" : "381,597"
+		},
+		{
+			"class" : "weka.knowledgeflow.steps.Saver",
+			"properties" : {
+				"name" : "ArffSaver",
+				"relationNameForFilename" : false,
+				"saver" : {
+					"type" : "saver",
+					"class" : "weka.core.converters.ArffSaver",
+					"filePath" : "",
+					"dir" : "/home/yoquec/code/python/Machine Learning/pacmanMLdr",
+					"prefix" : "salidaFlow",
+					"useRelativePath" : false,
+					"options" : "-decimal 6"
+				}
+			},
+			"connections" : {
+			},
+			"coordinates" : "528,305"
+		}
+	]
+}
