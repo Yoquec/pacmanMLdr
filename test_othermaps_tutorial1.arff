@@ -176,7 +176,8 @@
 10, 20, 13, 6, 7, True, True, True, True, True, North, 4, True, True, True, True, 8, 7, 9, 7, 10, 7, 11, 7, Stop, Stop, Stop, Stop, 2, 3, 4, 5, 105, 1, 891, East, 890
 11, 20, 13, 7, 7, False, False, True, True, True, East, 4, True, True, True, True, 8, 7, 9, 7, 10, 7, 11, 7, Stop, Stop, Stop, Stop, 1, 2, 3, 4, 105, 2, 890, East, 1089
 12, 20, 13, 8, 7, False, False, True, True, True, East, 4, False, True, True, True, 1, 1, 9, 7, 10, 7, 11, 7, Stop, Stop, Stop, Stop, -1, 1, 2, 3, 105, 3, 1089, East, 1288
-13, 20, 13, 9, 7, True, False, True, True, True, East, 4, False, False, True, True, 1, 1, 3, 1, 10, 7, 11, 7, Stop, Stop, Stop, Stop, -1, -1, 1, 2, 105, 2, 1288, East1, 19, 7, 8, 1, True, False, True, True, True, Stop, 4, True, True, True, True, 1, 1, 1, 5, 10, 5, 17, 1, None, None, None, None, -1, 11, 6, -1, 22, 3, 0, West, -1
+13, 20, 13, 9, 7, True, False, True, True, True, East, 4, False, False, True, True, 1, 1, 3, 1, 10, 7, 11, 7, Stop, Stop, Stop, Stop, -1, -1, 1, 2, 105, 2, 1288, East, 1387
+1, 19, 7, 8, 1, True, False, True, True, True, Stop, 4, True, True, True, True, 1, 1, 1, 5, 10, 5, 17, 1, None, None, None, None, -1, 11, 6, -1, 22, 3, 0, West, -1
 2, 19, 7, 7, 1, True, False, True, True, True, West, 4, True, True, True, True, 2, 1, 2, 5, 10, 5, 17, 1, East, East, Stop, North, -1, 9, 7, 11, 22, 2, -1, West, -2
 3, 19, 7, 6, 1, False, False, True, True, True, West, 4, True, True, True, True, 3, 1, 1, 5, 9, 5, 17, 2, East, West, West, North, -1, 9, 7, 12, 22, 1, -2, West, 97
 4, 19, 7, 5, 1, True, False, True, True, True, West, 4, True, True, True, True, 4, 1, 1, 5, 10, 5, 17, 2, East, West, East, North, -1, 8, 9, 13, 21, 1, 97, West, 396
