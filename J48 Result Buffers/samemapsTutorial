@@ -1,0 +1,199 @@
+=== Run information ===
+
+Scheme:       weka.classifiers.trees.J48 -C 0.25 -M 2
+Relation:     training_tutorial1.arff-weka.filters.unsupervised.attribute.Remove-R1-3,11-12,25-28,33-35,37-weka.filters.unsupervised.attribute.AddExpression-Ea12-a1-Ndiff1_x-weka.filters.unsupervised.attribute.AddExpression-Ea14-a1-Ndiff2_x-weka.filters.unsupervised.attribute.AddExpression-Ea16-a1-Ndiff3_x-weka.filters.unsupervised.attribute.AddExpression-Ea18-a1-Ndiff4_x-weka.filters.unsupervised.attribute.AddExpression-Ea13-a2-Ndiff1_y-weka.filters.unsupervised.attribute.AddExpression-Ea15-a2-Ndiff2_y-weka.filters.unsupervised.attribute.AddExpression-Ea17-a2-Ndiff3_y-weka.filters.unsupervised.attribute.AddExpression-Ea19-a2-Ndiff4_y-weka.filters.unsupervised.attribute.Remove-R12-23-weka.filters.unsupervised.attribute.Normalize-S1.0-T0.0-weka.filters.unsupervised.attribute.NominalToBinary-Rfirst-last-weka.filters.unsupervised.attribute.Reorder-R1,2,3,4,5,6,7,8,9,10,11,13,14,15,16,17,18,19,20,12
+Instances:    750
+Attributes:   20
+              pacman_pos_x
+              pacman_pos_y
+              legal_North=True
+              legal_South=True
+              legal_East=True
+              legal_West=True
+              legal_Stop=True
+              ghost1_alive=True
+              ghost2_alive=True
+              ghost3_alive=True
+              ghost4_alive=True
+              diff1_x
+              diff2_x
+              diff3_x
+              diff4_x
+              diff1_y
+              diff2_y
+              diff3_y
+              diff4_y
+              pacman_action
+Test mode:    user supplied test set:  size unknown (reading incrementally)
+
+=== Classifier model (full training set) ===
+
+J48 pruned tree
+------------------
+
+legal_East=True <= 0
+|   diff2_x <= 0.764706
+|   |   legal_North=True <= 0
+|   |   |   pacman_pos_x <= 0.576923: South (3.0)
+|   |   |   pacman_pos_x > 0.576923: West (7.0)
+|   |   legal_North=True > 0
+|   |   |   diff1_x <= 0.388889: South (12.0/1.0)
+|   |   |   diff1_x > 0.388889
+|   |   |   |   ghost4_alive=True <= 0
+|   |   |   |   |   ghost1_alive=True <= 0: North (2.0)
+|   |   |   |   |   ghost1_alive=True > 0
+|   |   |   |   |   |   pacman_pos_y <= 0.705882: North (2.0/1.0)
+|   |   |   |   |   |   pacman_pos_y > 0.705882: South (6.0/2.0)
+|   |   |   |   ghost4_alive=True > 0
+|   |   |   |   |   diff2_x <= 0.647059: North (101.0)
+|   |   |   |   |   diff2_x > 0.647059
+|   |   |   |   |   |   ghost1_alive=True <= 0: South (7.0/1.0)
+|   |   |   |   |   |   ghost1_alive=True > 0: North (11.0/1.0)
+|   diff2_x > 0.764706: South (25.0)
+legal_East=True > 0
+|   legal_North=True <= 0
+|   |   pacman_pos_y <= 0.647059
+|   |   |   diff4_x <= 0.131579
+|   |   |   |   pacman_pos_y <= 0.352941: East (2.0)
+|   |   |   |   pacman_pos_y > 0.352941: West (6.0)
+|   |   |   diff4_x > 0.131579
+|   |   |   |   legal_South=True <= 0
+|   |   |   |   |   diff1_x <= 0.638889: East (58.0/1.0)
+|   |   |   |   |   diff1_x > 0.638889: West (3.0)
+|   |   |   |   legal_South=True > 0
+|   |   |   |   |   diff4_y <= 0.571429
+|   |   |   |   |   |   diff4_x <= 0.289474: South (3.0)
+|   |   |   |   |   |   diff4_x > 0.289474
+|   |   |   |   |   |   |   diff3_y <= 0.482759
+|   |   |   |   |   |   |   |   diff2_y <= 0.333333: East (18.0)
+|   |   |   |   |   |   |   |   diff2_y > 0.333333
+|   |   |   |   |   |   |   |   |   diff3_x <= 0.439024: East (2.0)
+|   |   |   |   |   |   |   |   |   diff3_x > 0.439024
+|   |   |   |   |   |   |   |   |   |   diff3_x <= 0.536585: West (3.0)
+|   |   |   |   |   |   |   |   |   |   diff3_x > 0.536585: East (2.0)
+|   |   |   |   |   |   |   diff3_y > 0.482759
+|   |   |   |   |   |   |   |   diff1_x <= 0.666667: South (4.0)
+|   |   |   |   |   |   |   |   diff1_x > 0.666667: East (27.0/1.0)
+|   |   |   |   |   diff4_y > 0.571429: East (27.0)
+|   |   pacman_pos_y > 0.647059
+|   |   |   ghost2_alive=True <= 0
+|   |   |   |   diff1_x <= 0.722222
+|   |   |   |   |   ghost1_alive=True <= 0: West (2.0)
+|   |   |   |   |   ghost1_alive=True > 0: South (4.0/1.0)
+|   |   |   |   diff1_x > 0.722222: East (6.0)
+|   |   |   ghost2_alive=True > 0
+|   |   |   |   diff2_x <= 0.764706
+|   |   |   |   |   diff3_x <= 0.536585: West (34.0/2.0)
+|   |   |   |   |   diff3_x > 0.536585: East (2.0/1.0)
+|   |   |   |   diff2_x > 0.764706: South (5.0/1.0)
+|   legal_North=True > 0
+|   |   diff3_x <= 0.536585
+|   |   |   diff4_x <= 0.289474
+|   |   |   |   diff1_x <= 0.722222
+|   |   |   |   |   legal_West=True <= 0: North (10.0/1.0)
+|   |   |   |   |   legal_West=True > 0
+|   |   |   |   |   |   diff3_x <= 0.512195
+|   |   |   |   |   |   |   diff2_x <= 0.235294: South (7.0/1.0)
+|   |   |   |   |   |   |   diff2_x > 0.235294
+|   |   |   |   |   |   |   |   diff2_x <= 0.676471
+|   |   |   |   |   |   |   |   |   diff1_x <= 0.694444
+|   |   |   |   |   |   |   |   |   |   legal_South=True <= 0
+|   |   |   |   |   |   |   |   |   |   |   diff2_y <= 0.666667: West (6.0/1.0)
+|   |   |   |   |   |   |   |   |   |   |   diff2_y > 0.666667: North (8.0)
+|   |   |   |   |   |   |   |   |   |   legal_South=True > 0
+|   |   |   |   |   |   |   |   |   |   |   diff3_x <= 0.487805: West (45.0)
+|   |   |   |   |   |   |   |   |   |   |   diff3_x > 0.487805
+|   |   |   |   |   |   |   |   |   |   |   |   ghost4_alive=True <= 0: West (3.0)
+|   |   |   |   |   |   |   |   |   |   |   |   ghost4_alive=True > 0: North (3.0)
+|   |   |   |   |   |   |   |   |   diff1_x > 0.694444
+|   |   |   |   |   |   |   |   |   |   legal_South=True <= 0: West (2.0)
+|   |   |   |   |   |   |   |   |   |   legal_South=True > 0
+|   |   |   |   |   |   |   |   |   |   |   ghost2_alive=True <= 0: North (6.0)
+|   |   |   |   |   |   |   |   |   |   |   ghost2_alive=True > 0: South (4.0)
+|   |   |   |   |   |   |   |   diff2_x > 0.676471
+|   |   |   |   |   |   |   |   |   legal_South=True <= 0: North (2.0/1.0)
+|   |   |   |   |   |   |   |   |   legal_South=True > 0: South (6.0)
+|   |   |   |   |   |   diff3_x > 0.512195
+|   |   |   |   |   |   |   legal_South=True <= 0: West (2.0)
+|   |   |   |   |   |   |   legal_South=True > 0: South (16.0/1.0)
+|   |   |   |   diff1_x > 0.722222: East (4.0/1.0)
+|   |   |   diff4_x > 0.289474
+|   |   |   |   diff3_x <= 0.390244: East (23.0/1.0)
+|   |   |   |   diff3_x > 0.390244
+|   |   |   |   |   diff1_x <= 0.666667
+|   |   |   |   |   |   diff4_y <= 0.214286: West (4.0)
+|   |   |   |   |   |   diff4_y > 0.214286: North (49.0/4.0)
+|   |   |   |   |   diff1_x > 0.666667: East (2.0)
+|   |   diff3_x > 0.536585
+|   |   |   diff2_y <= 0.555556
+|   |   |   |   diff1_y <= 0.535714
+|   |   |   |   |   diff1_x <= 0.638889
+|   |   |   |   |   |   ghost4_alive=True <= 0
+|   |   |   |   |   |   |   ghost2_alive=True <= 0: East (5.0)
+|   |   |   |   |   |   |   ghost2_alive=True > 0: West (2.0)
+|   |   |   |   |   |   ghost4_alive=True > 0
+|   |   |   |   |   |   |   diff4_y <= 0.464286: South (6.0)
+|   |   |   |   |   |   |   diff4_y > 0.464286: East (62.0/5.0)
+|   |   |   |   |   diff1_x > 0.638889
+|   |   |   |   |   |   diff3_x <= 0.756098
+|   |   |   |   |   |   |   diff1_x <= 0.722222
+|   |   |   |   |   |   |   |   diff2_x <= 0.705882
+|   |   |   |   |   |   |   |   |   diff2_x <= 0.676471
+|   |   |   |   |   |   |   |   |   |   diff1_x <= 0.694444: West (8.0)
+|   |   |   |   |   |   |   |   |   |   diff1_x > 0.694444: South (3.0)
+|   |   |   |   |   |   |   |   |   diff2_x > 0.676471: South (12.0)
+|   |   |   |   |   |   |   |   diff2_x > 0.705882: East (2.0)
+|   |   |   |   |   |   |   diff1_x > 0.722222: East (3.0)
+|   |   |   |   |   |   diff3_x > 0.756098: South (20.0)
+|   |   |   |   diff1_y > 0.535714
+|   |   |   |   |   diff1_x <= 0.722222
+|   |   |   |   |   |   diff1_x <= 0.694444: West (5.0/1.0)
+|   |   |   |   |   |   diff1_x > 0.694444: North (7.0)
+|   |   |   |   |   diff1_x > 0.722222: East (12.0)
+|   |   |   diff2_y > 0.555556
+|   |   |   |   pacman_pos_x <= 0.346154: North (10.0/1.0)
+|   |   |   |   pacman_pos_x > 0.346154: East (7.0/1.0)
+
+Number of Leaves  : 	62
+
+Size of the tree : 	123
+
+
+Time taken to build model: 0.02 seconds
+
+=== Evaluation on test set ===
+
+Time taken to test model on supplied test set: 0 seconds
+
+=== Summary ===
+
+Correctly Classified Instances         264               60.6897 %
+Incorrectly Classified Instances       171               39.3103 %
+Kappa statistic                          0.4407
+Mean absolute error                      0.1333
+Root mean squared error                  0.3475
+Relative absolute error                 54.7047 %
+Root relative squared error             99.8703 %
+Total Number of Instances              435     
+
+=== Detailed Accuracy By Class ===
+
+                 TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
+                 0.711    0.247    0.670      0.711    0.690      0.461    0.772     0.609     East
+                 0.744    0.224    0.436      0.744    0.550      0.435    0.832     0.520     North
+                 0.527    0.062    0.747      0.527    0.618      0.527    0.760     0.613     South
+                 ?        0.000    ?          ?        ?          ?        ?         ?         Stop
+                 0.262    0.024    0.640      0.262    0.372      0.355    0.599     0.290     West
+                 ?        0.000    ?          ?        ?          ?        ?         ?         None
+Weighted Avg.    0.607    0.164    0.641      0.607    0.600      0.458    0.756     0.548     
+
+=== Confusion Matrix ===
+
+   a   b   c   d   e   f   <-- classified as
+ 128  42   3   0   7   0 |   a = East
+   9  61  10   0   2   0 |   b = North
+  35  18  59   0   0   0 |   c = South
+   0   0   0   0   0   0 |   d = Stop
+  19  19   7   0  16   0 |   e = West
+   0   0   0   0   0   0 |   f = None
+

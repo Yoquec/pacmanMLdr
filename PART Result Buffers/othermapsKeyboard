@@ -1,0 +1,619 @@
+=== Run information ===
+
+Scheme:       weka.classifiers.rules.PART -C 0.25 -M 2
+Relation:     training_keyboard.arff-weka.filters.unsupervised.attribute.Remove-R1-3,11,25-28,33-34,37-weka.filters.unsupervised.attribute.Remove-R8-weka.filters.unsupervised.attribute.Remove-R24-weka.filters.unsupervised.attribute.AddExpression-Ea12-a1-Ndiff1_x-weka.filters.unsupervised.attribute.AddExpression-Ea14-a1-Ndiff2_x-weka.filters.unsupervised.attribute.AddExpression-Ea16-a1-Ndiff3_x-weka.filters.unsupervised.attribute.AddExpression-Ea18-a1-Ndiff4_x-weka.filters.unsupervised.attribute.AddExpression-Ea13-a2-Ndiff1_y-weka.filters.unsupervised.attribute.AddExpression-Ea15-a2-Ndiff2_y-weka.filters.unsupervised.attribute.AddExpression-Ea17-a2-Ndiff3_y-weka.filters.unsupervised.attribute.AddExpression-Ea19-a2-Ndiff4_y-weka.filters.unsupervised.attribute.Remove-R12-23-weka.filters.unsupervised.attribute.Normalize-S1.0-T0.0-weka.filters.unsupervised.attribute.Normalize-S1.0-T0.0-weka.filters.unsupervised.attribute.Normalize-S1.0-T0.0-weka.filters.unsupervised.attribute.NominalToBinary-Rfirst-last-weka.filters.unsupervised.attribute.Reorder-R1,2,3,4,5,6,7,8,9,10,11,13,14,15,16,17,18,19,20,12
+Instances:    817
+Attributes:   20
+              pacman_pos_x
+              pacman_pos_y
+              legal_North=True
+              legal_South=True
+              legal_East=True
+              legal_West=True
+              legal_Stop=True
+              ghost1_alive=True
+              ghost2_alive=True
+              ghost3_alive=True
+              ghost4_alive=True
+              diff1_x
+              diff2_x
+              diff3_x
+              diff4_x
+              diff1_y
+              diff2_y
+              diff3_y
+              diff4_y
+              pacman_action
+Test mode:    user supplied test set:  size unknown (reading incrementally)
+
+=== Classifier model (full training set) ===
+
+PART decision list
+------------------
+
+pacman_pos_y <= 0 AND
+legal_North=True <= 0 AND
+diff1_y > 0.583333 AND
+diff3_y <= 0.967742 AND
+diff2_y <= 0.6875: Stop (31.0/1.0)
+
+legal_North=True <= 0 AND
+legal_East=True <= 0 AND
+pacman_pos_y <= 0.235294 AND
+diff4_x > 0.511628: Stop (7.0/2.0)
+
+legal_East=True <= 0 AND
+diff4_x > 0.72093 AND
+pacman_pos_x <= 0.074074: South (21.0)
+
+legal_North=True <= 0 AND
+diff2_y > 0.6875 AND
+diff2_x > 0.742857: West (10.0)
+
+legal_East=True <= 0 AND
+legal_North=True <= 0 AND
+pacman_pos_y > 0.235294 AND
+diff2_x > 0.428571 AND
+diff1_x <= 0.666667 AND
+diff2_y > 0.375: South (6.0/1.0)
+
+legal_North=True <= 0 AND
+pacman_pos_y <= 0 AND
+diff1_y <= 0.666667 AND
+diff4_x > 0.55814: Stop (6.0)
+
+legal_North=True <= 0 AND
+pacman_pos_x <= 0.111111 AND
+legal_South=True <= 0 AND
+diff4_y <= 0.172414: West (2.0)
+
+legal_North=True <= 0 AND
+pacman_pos_x <= 0.111111 AND
+pacman_pos_y > 0.294118 AND
+diff3_y > 0.129032 AND
+diff2_x > 0.857143 AND
+diff1_x > 0.833333: Stop (24.0/2.0)
+
+legal_East=True <= 0 AND
+legal_North=True <= 0 AND
+diff2_x > 0.428571: Stop (9.0/2.0)
+
+legal_East=True <= 0 AND
+diff1_y <= 0.583333 AND
+legal_South=True > 0 AND
+pacman_pos_x <= 0.703704 AND
+diff3_x <= 0.690476 AND
+diff2_x <= 0.428571: South (22.0/1.0)
+
+legal_East=True <= 0 AND
+diff3_x <= 0.690476 AND
+legal_South=True > 0 AND
+pacman_pos_x <= 0.62963 AND
+ghost3_alive=True > 0 AND
+pacman_pos_x > 0.222222: North (26.0/1.0)
+
+pacman_pos_y <= 0 AND
+legal_North=True <= 0 AND
+diff1_y > 0.666667: Stop (6.0)
+
+legal_East=True <= 0 AND
+diff1_x > 0.388889 AND
+diff3_x > 0.690476 AND
+pacman_pos_y <= 0.352941: South (4.0)
+
+legal_East=True <= 0 AND
+legal_South=True > 0 AND
+pacman_pos_x > 0.444444 AND
+ghost3_alive=True <= 0: North (11.0/3.0)
+
+legal_East=True <= 0 AND
+legal_South=True > 0 AND
+pacman_pos_x > 0.444444: Stop (4.0/1.0)
+
+legal_East=True <= 0 AND
+diff1_x <= 0.361111: West (3.0/1.0)
+
+legal_East=True <= 0 AND
+diff1_y <= 0.25 AND
+diff2_x <= 0.828571 AND
+diff4_y > 0.482759: Stop (3.0/1.0)
+
+legal_East=True <= 0 AND
+diff2_x > 0.857143: North (11.0/1.0)
+
+legal_North=True <= 0 AND
+pacman_pos_y <= 0 AND
+diff1_x > 0.666667 AND
+diff4_x > 0.511628: West (5.0/1.0)
+
+legal_East=True <= 0 AND
+diff4_y > 0.586207: South (6.0)
+
+legal_North=True <= 0 AND
+pacman_pos_x <= 0 AND
+diff1_y <= 0.125: South (4.0/1.0)
+
+legal_North=True <= 0 AND
+legal_West=True > 0 AND
+pacman_pos_y <= 0 AND
+diff1_x <= 0.666667: West (3.0)
+
+legal_North=True <= 0 AND
+legal_West=True > 0 AND
+ghost1_alive=True <= 0 AND
+ghost4_alive=True > 0 AND
+diff4_y <= 0.586207 AND
+legal_South=True <= 0: East (55.0)
+
+legal_North=True <= 0 AND
+legal_West=True <= 0 AND
+pacman_pos_x > 0.074074 AND
+ghost2_alive=True > 0 AND
+pacman_pos_y <= 0.235294 AND
+diff2_y > 0.625 AND
+diff2_x > 0.742857: East (5.0)
+
+legal_North=True <= 0 AND
+legal_West=True <= 0 AND
+diff3_x > 0.571429: Stop (9.0/1.0)
+
+legal_North=True <= 0 AND
+legal_South=True <= 0 AND
+pacman_pos_y > 0 AND
+pacman_pos_y > 0.352941 AND
+ghost4_alive=True > 0: East (6.0)
+
+legal_North=True <= 0 AND
+pacman_pos_y > 0 AND
+legal_South=True <= 0 AND
+diff3_x > 0.309524 AND
+ghost1_alive=True > 0 AND
+pacman_pos_x <= 0.296296: West (9.0)
+
+legal_North=True <= 0 AND
+pacman_pos_y > 0 AND
+legal_South=True <= 0 AND
+diff3_x <= 0.309524: East (6.0)
+
+legal_North=True <= 0 AND
+pacman_pos_y <= 0: Stop (2.0)
+
+legal_North=True <= 0 AND
+legal_South=True <= 0 AND
+ghost4_alive=True <= 0 AND
+pacman_pos_y <= 0.352941: West (2.0)
+
+legal_North=True <= 0 AND
+legal_South=True <= 0 AND
+ghost1_alive=True <= 0 AND
+pacman_pos_y <= 0.235294 AND
+pacman_pos_y <= 0.117647: East (5.0/1.0)
+
+diff2_y > 0.53125 AND
+diff2_x <= 0.657143 AND
+diff1_x <= 0.611111: Stop (7.0/2.0)
+
+legal_North=True <= 0 AND
+legal_South=True <= 0 AND
+ghost1_alive=True > 0 AND
+pacman_pos_x <= 0.37037 AND
+pacman_pos_x <= 0.333333: East (3.0/1.0)
+
+legal_North=True <= 0 AND
+legal_South=True <= 0 AND
+ghost1_alive=True > 0: West (5.0/1.0)
+
+legal_North=True <= 0 AND
+legal_South=True <= 0 AND
+pacman_pos_y <= 0.235294 AND
+diff4_y <= 0.62069: East (4.0/1.0)
+
+legal_South=True <= 0 AND
+legal_North=True <= 0 AND
+pacman_pos_y <= 0.235294: West (4.0/1.0)
+
+legal_South=True <= 0 AND
+diff2_y > 0.5625: North (20.0/2.0)
+
+legal_East=True <= 0 AND
+diff1_y <= 0.25: South (4.0)
+
+legal_North=True <= 0 AND
+diff4_x > 0.116279 AND
+ghost1_alive=True <= 0 AND
+diff4_x > 0.372093 AND
+diff3_y > 0.354839: East (18.0)
+
+diff3_x > 0.880952 AND
+pacman_pos_y > 0.352941: South (17.0/1.0)
+
+legal_East=True <= 0 AND
+legal_West=True <= 0 AND
+ghost3_alive=True <= 0 AND
+pacman_pos_x > 0.296296: South (4.0/1.0)
+
+legal_East=True <= 0: North (8.0/1.0)
+
+legal_North=True <= 0 AND
+pacman_pos_x <= 0.592593 AND
+ghost1_alive=True <= 0 AND
+pacman_pos_x > 0.37037 AND
+diff2_x > 0.342857 AND
+diff3_x > 0.285714: South (4.0/1.0)
+
+legal_North=True <= 0 AND
+legal_West=True <= 0 AND
+pacman_pos_x > 0.222222: East (4.0)
+
+legal_West=True <= 0 AND
+pacman_pos_y <= 0.235294: East (9.0/1.0)
+
+legal_West=True <= 0 AND
+diff2_x <= 0.428571 AND
+diff4_y <= 0.551724: South (8.0)
+
+legal_West=True > 0 AND
+legal_North=True <= 0 AND
+ghost4_alive=True > 0 AND
+ghost1_alive=True <= 0: East (12.0/3.0)
+
+legal_West=True > 0 AND
+legal_North=True <= 0 AND
+ghost1_alive=True <= 0: West (5.0/2.0)
+
+legal_West=True > 0 AND
+legal_North=True <= 0 AND
+ghost4_alive=True > 0 AND
+diff2_y > 0.28125 AND
+ghost3_alive=True <= 0 AND
+diff1_x <= 0.638889: East (3.0/1.0)
+
+legal_West=True > 0 AND
+legal_North=True <= 0 AND
+diff1_x > 0.694444 AND
+ghost4_alive=True > 0 AND
+diff4_x > 0.651163 AND
+diff3_y <= 0.516129: East (7.0)
+
+legal_West=True > 0 AND
+legal_North=True <= 0 AND
+ghost4_alive=True > 0 AND
+ghost3_alive=True > 0 AND
+diff3_y > 0.516129 AND
+diff2_x <= 0.8: West (4.0/1.0)
+
+legal_West=True > 0 AND
+legal_South=True <= 0 AND
+ghost4_alive=True > 0 AND
+diff4_y <= 0.758621 AND
+diff3_y <= 0.580645 AND
+ghost1_alive=True <= 0 AND
+diff3_y <= 0.451613 AND
+diff3_y <= 0.419355 AND
+diff4_x > 0.395349: East (4.0/1.0)
+
+legal_West=True > 0 AND
+legal_South=True <= 0 AND
+ghost4_alive=True > 0 AND
+diff4_y <= 0.758621 AND
+pacman_pos_y > 0.235294: East (5.0/1.0)
+
+legal_West=True <= 0 AND
+diff2_x <= 0.885714 AND
+legal_North=True > 0 AND
+ghost1_alive=True > 0: North (7.0/1.0)
+
+legal_West=True > 0 AND
+legal_South=True <= 0 AND
+pacman_pos_y > 0.117647 AND
+pacman_pos_y <= 0.470588 AND
+diff4_y <= 0.517241: East (4.0/1.0)
+
+legal_West=True > 0 AND
+legal_South=True <= 0 AND
+pacman_pos_y > 0.117647 AND
+diff3_y <= 0.483871: North (6.0)
+
+legal_West=True > 0 AND
+diff4_y <= 0.206897 AND
+ghost2_alive=True > 0: West (10.0/1.0)
+
+legal_West=True > 0 AND
+pacman_pos_y > 0.588235 AND
+diff2_x > 0.485714 AND
+ghost1_alive=True > 0 AND
+ghost3_alive=True > 0 AND
+legal_North=True > 0: East (5.0/1.0)
+
+legal_West=True > 0 AND
+diff1_x > 0.833333 AND
+diff1_x <= 0.861111: South (7.0)
+
+legal_West=True > 0 AND
+legal_South=True <= 0 AND
+pacman_pos_y > 0.117647 AND
+diff2_x > 0.828571: North (3.0/1.0)
+
+legal_West=True > 0 AND
+legal_South=True <= 0 AND
+pacman_pos_y <= 0.117647 AND
+ghost3_alive=True > 0 AND
+pacman_pos_x <= 0.296296 AND
+diff4_y <= 0.758621 AND
+diff3_x <= 0.833333: North (3.0)
+
+legal_West=True > 0 AND
+legal_South=True <= 0 AND
+ghost3_alive=True > 0 AND
+pacman_pos_x > 0.259259: West (5.0)
+
+legal_West=True > 0 AND
+pacman_pos_x <= 0.148148 AND
+legal_North=True > 0 AND
+ghost1_alive=True > 0 AND
+diff3_x <= 0.857143 AND
+diff1_x <= 0.805556: North (10.0/1.0)
+
+legal_West=True > 0 AND
+pacman_pos_x <= 0.148148: East (20.0/2.0)
+
+legal_West=True > 0 AND
+ghost4_alive=True <= 0 AND
+legal_North=True > 0 AND
+diff1_y <= 0.25 AND
+pacman_pos_x <= 0.407407: East (7.0)
+
+ghost4_alive=True <= 0 AND
+legal_North=True > 0: South (12.0/3.0)
+
+legal_West=True > 0 AND
+ghost1_alive=True <= 0 AND
+diff4_x > 0.372093 AND
+pacman_pos_x <= 0.259259 AND
+ghost3_alive=True > 0 AND
+diff1_y <= 0.458333 AND
+pacman_pos_x <= 0.222222 AND
+diff3_y > 0.548387 AND
+diff4_x <= 0.744186: West (7.0/2.0)
+
+legal_West=True > 0 AND
+ghost1_alive=True <= 0 AND
+diff4_x > 0.372093 AND
+diff3_y > 0.645161 AND
+diff2_y <= 0.46875 AND
+pacman_pos_x <= 0.555556: East (18.0/2.0)
+
+legal_West=True > 0 AND
+legal_North=True <= 0 AND
+diff1_x > 0.694444 AND
+diff2_y <= 0.3125: East (3.0)
+
+legal_North=True <= 0 AND
+ghost1_alive=True > 0 AND
+diff1_x > 0.694444: South (4.0)
+
+legal_North=True <= 0 AND
+pacman_pos_x <= 0.222222: East (2.0/1.0)
+
+legal_West=True <= 0 AND
+diff4_y > 0.448276: East (7.0/2.0)
+
+legal_West=True <= 0 AND
+diff3_x <= 0.666667: Stop (3.0/1.0)
+
+ghost1_alive=True <= 0 AND
+diff4_x > 0.372093 AND
+diff3_y > 0.645161 AND
+pacman_pos_x <= 0.444444: West (2.0)
+
+ghost1_alive=True <= 0 AND
+diff4_x > 0.372093 AND
+legal_South=True <= 0 AND
+diff4_y <= 0.758621: East (3.0)
+
+ghost1_alive=True <= 0 AND
+diff4_x > 0.372093 AND
+diff2_y <= 0.4375 AND
+diff3_x > 0.619048 AND
+pacman_pos_x > 0.296296: East (15.0)
+
+ghost1_alive=True <= 0 AND
+diff4_x > 0.372093 AND
+legal_South=True > 0 AND
+pacman_pos_x > 0.703704 AND
+pacman_pos_x <= 0.925926 AND
+pacman_pos_x <= 0.851852: East (7.0)
+
+ghost1_alive=True <= 0 AND
+diff4_x > 0.372093 AND
+legal_South=True > 0 AND
+pacman_pos_x <= 0.259259 AND
+ghost3_alive=True > 0 AND
+diff1_y <= 0.416667 AND
+legal_West=True > 0: East (9.0/1.0)
+
+ghost1_alive=True <= 0 AND
+diff4_x > 0.372093 AND
+legal_South=True > 0 AND
+pacman_pos_x > 0.222222 AND
+ghost2_alive=True <= 0 AND
+diff3_x > 0.595238 AND
+pacman_pos_y <= 0.588235 AND
+diff3_x > 0.833333: North (8.0)
+
+diff3_x > 0.690476 AND
+diff4_x > 0.697674 AND
+ghost1_alive=True > 0 AND
+pacman_pos_x <= 0.222222: East (3.0)
+
+ghost1_alive=True <= 0 AND
+diff4_x > 0.372093 AND
+legal_South=True > 0 AND
+pacman_pos_x > 0.222222 AND
+legal_West=True > 0 AND
+diff4_x <= 0.790698 AND
+ghost2_alive=True > 0 AND
+diff2_x <= 0.685714: South (7.0/1.0)
+
+ghost1_alive=True <= 0 AND
+diff3_y > 0.548387: North (10.0/1.0)
+
+ghost1_alive=True <= 0 AND
+diff4_x > 0.372093 AND
+legal_South=True > 0 AND
+pacman_pos_x <= 0.296296 AND
+pacman_pos_x > 0.222222 AND
+diff4_x <= 0.790698: East (8.0/1.0)
+
+legal_North=True > 0 AND
+diff1_y > 0.5 AND
+diff1_y <= 0.541667: East (5.0)
+
+ghost1_alive=True > 0 AND
+diff1_y <= 0.375: South (6.0)
+
+ghost1_alive=True > 0 AND
+diff2_y > 0.46875 AND
+diff2_y <= 0.5625 AND
+diff4_x <= 0.627907: West (6.0/1.0)
+
+diff2_y > 0.53125: North (8.0/1.0)
+
+ghost1_alive=True > 0 AND
+ghost2_alive=True <= 0 AND
+pacman_pos_y > 0.294118: West (7.0)
+
+diff3_x > 0.238095 AND
+pacman_pos_x > 0.259259 AND
+diff4_x <= 0.72093 AND
+ghost1_alive=True <= 0 AND
+diff3_x <= 0.595238 AND
+diff4_y <= 0.551724: South (9.0)
+
+ghost1_alive=True > 0 AND
+pacman_pos_x > 0.259259: South (5.0)
+
+diff4_x <= 0.348837 AND
+pacman_pos_x > 0.888889 AND
+diff4_x <= 0.325581: West (3.0/1.0)
+
+legal_South=True > 0 AND
+diff3_y > 0.322581 AND
+pacman_pos_x > 0.222222 AND
+diff3_y > 0.451613 AND
+ghost1_alive=True <= 0 AND
+diff3_x > 0.547619: East (8.0/1.0)
+
+diff4_x <= 0.372093 AND
+pacman_pos_y <= 0.352941: North (6.0/1.0)
+
+diff4_x <= 0.372093: West (6.0/1.0)
+
+legal_South=True > 0 AND
+ghost2_alive=True <= 0 AND
+diff3_y <= 0.451613 AND
+ghost3_alive=True > 0 AND
+diff4_x > 0.767442 AND
+pacman_pos_y > 0.411765: East (3.0/1.0)
+
+legal_South=True > 0 AND
+legal_West=True > 0 AND
+ghost2_alive=True <= 0 AND
+diff3_y <= 0.451613 AND
+ghost3_alive=True <= 0 AND
+diff4_x <= 0.604651 AND
+pacman_pos_x <= 0.592593 AND
+pacman_pos_x > 0.37037: South (3.0)
+
+legal_South=True > 0 AND
+legal_West=True > 0 AND
+ghost2_alive=True <= 0 AND
+diff3_y <= 0.451613 AND
+ghost3_alive=True <= 0 AND
+diff4_x <= 0.604651 AND
+diff4_y > 0.551724 AND
+pacman_pos_x <= 0.777778 AND
+diff4_y <= 0.689655 AND
+diff4_y > 0.586207 AND
+pacman_pos_x > 0.62963: North (11.0/2.0)
+
+legal_South=True > 0 AND
+legal_West=True > 0 AND
+pacman_pos_x <= 0.62963 AND
+diff3_y <= 0.419355: North (8.0/3.0)
+
+legal_South=True > 0 AND
+legal_West=True > 0 AND
+diff4_y > 0.689655 AND
+pacman_pos_y > 0.176471: South (3.0/1.0)
+
+legal_South=True > 0 AND
+legal_West=True > 0 AND
+diff4_y <= 0.724138 AND
+ghost1_alive=True <= 0 AND
+pacman_pos_x <= 0.925926 AND
+diff2_y <= 0.40625 AND
+diff3_y <= 0.387097: East (5.0/1.0)
+
+legal_South=True > 0 AND
+legal_West=True > 0 AND
+diff4_y <= 0.724138 AND
+diff4_y > 0.655172: East (4.0)
+
+legal_South=True > 0 AND
+ghost2_alive=True <= 0 AND
+diff3_y > 0.354839 AND
+pacman_pos_x <= 0.777778: North (4.0)
+
+legal_South=True > 0 AND
+ghost2_alive=True <= 0 AND
+pacman_pos_x > 0.925926: North (3.0/1.0)
+
+diff2_y > 0.4375 AND
+legal_South=True > 0: East (3.0/1.0)
+
+pacman_pos_x <= 0.740741: North (2.0/1.0)
+
+: South (2.0)
+
+Number of Rules  : 	106
+
+
+Time taken to build model: 0.08 seconds
+
+=== Evaluation on test set ===
+
+Time taken to test model on supplied test set: 0.01 seconds
+
+=== Summary ===
+
+Correctly Classified Instances         359               49.3132 %
+Incorrectly Classified Instances       369               50.6868 %
+Kappa statistic                          0.3503
+Mean absolute error                      0.1753
+Root mean squared error                  0.3944
+Relative absolute error                 68.1019 %
+Root relative squared error            109.8514 %
+Total Number of Instances              728     
+
+=== Detailed Accuracy By Class ===
+
+                 TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
+                 0.701    0.078    0.839      0.701    0.764      0.651    0.840     0.756     East
+                 0.311    0.097    0.414      0.311    0.355      0.240    0.686     0.321     North
+                 0.345    0.113    0.284      0.345    0.312      0.213    0.637     0.181     South
+                 0.606    0.270    0.283      0.606    0.386      0.257    0.647     0.221     Stop
+                 0.259    0.059    0.500      0.259    0.341      0.264    0.598     0.277     West
+                 ?        0.000    ?          ?        ?          ?        ?         ?         None
+Weighted Avg.    0.493    0.111    0.552      0.493    0.503      0.395    0.715     0.442     
+
+=== Confusion Matrix ===
+
+   a   b   c   d   e   f   <-- classified as
+ 188  12   1  62   5   0 |   a = East
+   6  41  64  19   2   0 |   b = North
+  18  28  29   9   0   0 |   c = South
+   5   6   4  66  28   0 |   d = Stop
+   7  12   4  77  35   0 |   e = West
+   0   0   0   0   0   0 |   f = None
+

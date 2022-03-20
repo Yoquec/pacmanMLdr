@@ -1,0 +1,72 @@
+=== Run information ===
+
+Scheme:       weka.classifiers.lazy.IBk -K 3 -W 0 -A "weka.core.neighboursearch.LinearNNSearch -A \"weka.core.EuclideanDistance -R first-last\""
+Relation:     training_keyboard.arff-weka.filters.unsupervised.attribute.Remove-R1-3,11,25-28,33-34,37-weka.filters.unsupervised.attribute.Remove-R8-weka.filters.unsupervised.attribute.Remove-R24-weka.filters.unsupervised.attribute.AddExpression-Ea12-a1-Ndiff1_x-weka.filters.unsupervised.attribute.AddExpression-Ea14-a1-Ndiff2_x-weka.filters.unsupervised.attribute.AddExpression-Ea16-a1-Ndiff3_x-weka.filters.unsupervised.attribute.AddExpression-Ea18-a1-Ndiff4_x-weka.filters.unsupervised.attribute.AddExpression-Ea13-a2-Ndiff1_y-weka.filters.unsupervised.attribute.AddExpression-Ea15-a2-Ndiff2_y-weka.filters.unsupervised.attribute.AddExpression-Ea17-a2-Ndiff3_y-weka.filters.unsupervised.attribute.AddExpression-Ea19-a2-Ndiff4_y-weka.filters.unsupervised.attribute.Remove-R12-23-weka.filters.unsupervised.attribute.Normalize-S1.0-T0.0-weka.filters.unsupervised.attribute.Normalize-S1.0-T0.0-weka.filters.unsupervised.attribute.Normalize-S1.0-T0.0-weka.filters.unsupervised.attribute.NominalToBinary-Rfirst-last-weka.filters.unsupervised.attribute.Reorder-R1,2,3,4,5,6,7,8,9,10,11,13,14,15,16,17,18,19,20,12
+Instances:    817
+Attributes:   20
+              pacman_pos_x
+              pacman_pos_y
+              legal_North=True
+              legal_South=True
+              legal_East=True
+              legal_West=True
+              legal_Stop=True
+              ghost1_alive=True
+              ghost2_alive=True
+              ghost3_alive=True
+              ghost4_alive=True
+              diff1_x
+              diff2_x
+              diff3_x
+              diff4_x
+              diff1_y
+              diff2_y
+              diff3_y
+              diff4_y
+              pacman_action
+Test mode:    user supplied test set:  size unknown (reading incrementally)
+
+=== Classifier model (full training set) ===
+
+IB1 instance-based classifier
+using 3 nearest neighbour(s) for classification
+
+
+Time taken to build model: 0 seconds
+
+=== Evaluation on test set ===
+
+Time taken to test model on supplied test set: 0.05 seconds
+
+=== Summary ===
+
+Correctly Classified Instances         414               61.3333 %
+Incorrectly Classified Instances       261               38.6667 %
+Kappa statistic                          0.501 
+Mean absolute error                      0.1431
+Root mean squared error                  0.3129
+Relative absolute error                 55.305  %
+Root relative squared error             86.6846 %
+Total Number of Instances              675     
+
+=== Detailed Accuracy By Class ===
+
+                 TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
+                 0.617    0.204    0.576      0.617    0.596      0.406    0.777     0.571     East
+                 0.664    0.098    0.627      0.664    0.645      0.554    0.852     0.622     North
+                 0.690    0.106    0.641      0.690    0.664      0.569    0.852     0.656     South
+                 0.709    0.053    0.663      0.709    0.685      0.638    0.839     0.568     Stop
+                 0.347    0.045    0.574      0.347    0.432      0.375    0.733     0.364     West
+                 ?        0.000    ?          ?        ?          ?        ?         ?         None
+Weighted Avg.    0.613    0.119    0.611      0.613    0.607      0.495    0.809     0.568     
+
+=== Confusion Matrix ===
+
+   a   b   c   d   e   f   <-- classified as
+ 129  28  22  13  17   0 |   a = East
+  28  89  13   0   4   0 |   b = North
+  29   8 100   6   2   0 |   c = South
+  11   4   7  61   3   0 |   d = Stop
+  27  13  14  12  35   0 |   e = West
+   0   0   0   0   0   0 |   f = None
+

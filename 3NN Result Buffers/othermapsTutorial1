@@ -1,0 +1,72 @@
+=== Run information ===
+
+Scheme:       weka.classifiers.lazy.IBk -K 3 -W 0 -A "weka.core.neighboursearch.LinearNNSearch -A \"weka.core.EuclideanDistance -R first-last\""
+Relation:     training_tutorial1.arff-weka.filters.unsupervised.attribute.Remove-R1-3,11-12,25-28,33-35,37-weka.filters.unsupervised.attribute.AddExpression-Ea12-a1-Ndiff1_x-weka.filters.unsupervised.attribute.AddExpression-Ea14-a1-Ndiff2_x-weka.filters.unsupervised.attribute.AddExpression-Ea16-a1-Ndiff3_x-weka.filters.unsupervised.attribute.AddExpression-Ea18-a1-Ndiff4_x-weka.filters.unsupervised.attribute.AddExpression-Ea13-a2-Ndiff1_y-weka.filters.unsupervised.attribute.AddExpression-Ea15-a2-Ndiff2_y-weka.filters.unsupervised.attribute.AddExpression-Ea17-a2-Ndiff3_y-weka.filters.unsupervised.attribute.AddExpression-Ea19-a2-Ndiff4_y-weka.filters.unsupervised.attribute.Remove-R12-23-weka.filters.unsupervised.attribute.Normalize-S1.0-T0.0-weka.filters.unsupervised.attribute.NominalToBinary-Rfirst-last-weka.filters.unsupervised.attribute.Reorder-R1,2,3,4,5,6,7,8,9,10,11,13,14,15,16,17,18,19,20,12
+Instances:    750
+Attributes:   20
+              pacman_pos_x
+              pacman_pos_y
+              legal_North=True
+              legal_South=True
+              legal_East=True
+              legal_West=True
+              legal_Stop=True
+              ghost1_alive=True
+              ghost2_alive=True
+              ghost3_alive=True
+              ghost4_alive=True
+              diff1_x
+              diff2_x
+              diff3_x
+              diff4_x
+              diff1_y
+              diff2_y
+              diff3_y
+              diff4_y
+              pacman_action
+Test mode:    user supplied test set:  size unknown (reading incrementally)
+
+=== Classifier model (full training set) ===
+
+IB1 instance-based classifier
+using 3 nearest neighbour(s) for classification
+
+
+Time taken to build model: 0 seconds
+
+=== Evaluation on test set ===
+
+Time taken to test model on supplied test set: 0.06 seconds
+
+=== Summary ===
+
+Correctly Classified Instances         482               60.7053 %
+Incorrectly Classified Instances       312               39.2947 %
+Kappa statistic                          0.4195
+Mean absolute error                      0.1293
+Root mean squared error                  0.3195
+Relative absolute error                 53.2701 %
+Root relative squared error             92.1915 %
+Total Number of Instances              794     
+
+=== Detailed Accuracy By Class ===
+
+                 TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
+                 0.826    0.314    0.669      0.826    0.739      0.509    0.817     0.746     East
+                 0.553    0.094    0.595      0.553    0.573      0.472    0.786     0.468     North
+                 0.432    0.096    0.317      0.432    0.366      0.294    0.765     0.260     South
+                 ?        0.000    ?          ?        ?          ?        ?         ?         Stop
+                 0.356    0.073    0.647      0.356    0.460      0.354    0.672     0.505     West
+                 ?        0.000    ?          ?        ?          ?        ?         ?         None
+Weighted Avg.    0.607    0.184    0.615      0.607    0.595      0.439    0.766     0.579     
+
+=== Confusion Matrix ===
+
+   a   b   c   d   e   f   <-- classified as
+ 285  15  21   0  24   0 |   a = East
+  23  88  38   0  10   0 |   b = North
+  24  10  32   0   8   0 |   c = South
+   0   0   0   0   0   0 |   d = Stop
+  94  35  10   0  77   0 |   e = West
+   0   0   0   0   0   0 |   f = None
+

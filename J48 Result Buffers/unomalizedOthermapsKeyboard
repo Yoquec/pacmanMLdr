@@ -1,0 +1,297 @@
+=== Run information ===
+
+Scheme:       weka.classifiers.trees.J48 -C 0.25 -M 2
+Relation:     training_keyboard.arff-weka.filters.unsupervised.attribute.Remove-R1-3,11,25-28,33-34,37-weka.filters.unsupervised.attribute.Remove-R8-weka.filters.unsupervised.attribute.Remove-R24-weka.filters.unsupervised.attribute.AddExpression-Ea12-a1-Ndiff1_x-weka.filters.unsupervised.attribute.AddExpression-Ea14-a1-Ndiff2_x-weka.filters.unsupervised.attribute.AddExpression-Ea16-a1-Ndiff3_x-weka.filters.unsupervised.attribute.AddExpression-Ea18-a1-Ndiff4_x-weka.filters.unsupervised.attribute.AddExpression-Ea13-a2-Ndiff1_y-weka.filters.unsupervised.attribute.AddExpression-Ea15-a2-Ndiff2_y-weka.filters.unsupervised.attribute.AddExpression-Ea17-a2-Ndiff3_y-weka.filters.unsupervised.attribute.AddExpression-Ea19-a2-Ndiff4_y-weka.filters.unsupervised.attribute.Remove-R12-23-weka.filters.unsupervised.attribute.Reorder-R1-11,13-last,12
+Instances:    817
+Attributes:   20
+              pacman_pos_x
+              pacman_pos_y
+              legal_North
+              legal_South
+              legal_East
+              legal_West
+              legal_Stop
+              ghost1_alive
+              ghost2_alive
+              ghost3_alive
+              ghost4_alive
+              diff1_x
+              diff2_x
+              diff3_x
+              diff4_x
+              diff1_y
+              diff2_y
+              diff3_y
+              diff4_y
+              pacman_action
+Test mode:    user supplied test set:  size unknown (reading incrementally)
+
+=== Classifier model (full training set) ===
+
+J48 pruned tree
+------------------
+
+pacman_pos_y <= 1
+|   legal_North = False
+|   |   diff1_y <= 2: West (3.0)
+|   |   diff1_y > 2
+|   |   |   diff3_y <= 13
+|   |   |   |   diff2_y <= 5: Stop (31.0/1.0)
+|   |   |   |   diff2_y > 5
+|   |   |   |   |   diff4_x <= 8
+|   |   |   |   |   |   diff4_x <= 6: Stop (8.0/1.0)
+|   |   |   |   |   |   diff4_x > 6: West (6.0/1.0)
+|   |   |   |   |   diff4_x > 8: Stop (7.0)
+|   |   |   diff3_y > 13: West (2.0)
+|   legal_North = True
+|   |   diff1_x <= -3: West (3.0/1.0)
+|   |   diff1_x > -3: North (9.0)
+pacman_pos_y > 1
+|   legal_East = False
+|   |   legal_North = False
+|   |   |   pacman_pos_y <= 5: Stop (10.0/4.0)
+|   |   |   pacman_pos_y > 5
+|   |   |   |   diff2_x <= -10: South (4.0)
+|   |   |   |   diff2_x > -10
+|   |   |   |   |   diff1_x <= -3
+|   |   |   |   |   |   diff2_y <= -5: Stop (5.0/1.0)
+|   |   |   |   |   |   diff2_y > -5: South (6.0/1.0)
+|   |   |   |   |   diff1_x > -3: Stop (2.0)
+|   |   legal_North = True
+|   |   |   diff4_x <= 15
+|   |   |   |   diff1_x <= -11
+|   |   |   |   |   pacman_pos_y <= 6: South (21.0/3.0)
+|   |   |   |   |   pacman_pos_y > 6
+|   |   |   |   |   |   diff4_y <= -1: South (2.0)
+|   |   |   |   |   |   diff4_y > -1
+|   |   |   |   |   |   |   diff4_y <= 0: Stop (2.0)
+|   |   |   |   |   |   |   diff4_y > 0: North (10.0/4.0)
+|   |   |   |   diff1_x > -11: North (55.0/10.0)
+|   |   |   diff4_x > 15: South (31.0/2.0)
+|   legal_East = True
+|   |   diff3_x <= 14
+|   |   |   legal_North = False
+|   |   |   |   legal_South = False
+|   |   |   |   |   ghost1_alive = False
+|   |   |   |   |   |   ghost4_alive = False: West (3.0/1.0)
+|   |   |   |   |   |   ghost4_alive = True: East (71.0/5.0)
+|   |   |   |   |   ghost1_alive = True
+|   |   |   |   |   |   pacman_pos_y <= 10: West (18.0/2.0)
+|   |   |   |   |   |   pacman_pos_y > 10
+|   |   |   |   |   |   |   diff1_y <= 4: East (6.0)
+|   |   |   |   |   |   |   diff1_y > 4
+|   |   |   |   |   |   |   |   diff4_x <= -3: West (2.0)
+|   |   |   |   |   |   |   |   diff4_x > -3: East (3.0)
+|   |   |   |   legal_South = True
+|   |   |   |   |   diff4_x <= -11: West (3.0)
+|   |   |   |   |   diff4_x > -11
+|   |   |   |   |   |   ghost1_alive = False
+|   |   |   |   |   |   |   diff4_x <= 0: South (4.0/1.0)
+|   |   |   |   |   |   |   diff4_x > 0: East (33.0/5.0)
+|   |   |   |   |   |   ghost1_alive = True
+|   |   |   |   |   |   |   pacman_pos_y <= 4
+|   |   |   |   |   |   |   |   diff2_y <= 3: Stop (4.0/1.0)
+|   |   |   |   |   |   |   |   diff2_y > 3
+|   |   |   |   |   |   |   |   |   diff2_x <= 1: Stop (3.0/1.0)
+|   |   |   |   |   |   |   |   |   diff2_x > 1: East (5.0)
+|   |   |   |   |   |   |   pacman_pos_y > 4
+|   |   |   |   |   |   |   |   diff4_x <= 17
+|   |   |   |   |   |   |   |   |   ghost4_alive = False: East (3.0)
+|   |   |   |   |   |   |   |   |   ghost4_alive = True
+|   |   |   |   |   |   |   |   |   |   diff2_x <= 1
+|   |   |   |   |   |   |   |   |   |   |   diff1_x <= -2: West (4.0/1.0)
+|   |   |   |   |   |   |   |   |   |   |   diff1_x > -2: South (6.0/1.0)
+|   |   |   |   |   |   |   |   |   |   diff2_x > 1
+|   |   |   |   |   |   |   |   |   |   |   diff3_y <= -1: East (6.0)
+|   |   |   |   |   |   |   |   |   |   |   diff3_y > -1
+|   |   |   |   |   |   |   |   |   |   |   |   diff2_x <= 3: West (4.0/1.0)
+|   |   |   |   |   |   |   |   |   |   |   |   diff2_x > 3: East (5.0/1.0)
+|   |   |   |   |   |   |   |   diff4_x > 17: Stop (5.0/2.0)
+|   |   |   legal_North = True
+|   |   |   |   diff2_y <= 0
+|   |   |   |   |   diff4_x <= 18
+|   |   |   |   |   |   diff2_y <= -1
+|   |   |   |   |   |   |   ghost2_alive = False
+|   |   |   |   |   |   |   |   legal_West = False
+|   |   |   |   |   |   |   |   |   diff1_x <= -10
+|   |   |   |   |   |   |   |   |   |   ghost3_alive = False: East (7.0)
+|   |   |   |   |   |   |   |   |   |   ghost3_alive = True
+|   |   |   |   |   |   |   |   |   |   |   diff4_y <= -1: South (8.0)
+|   |   |   |   |   |   |   |   |   |   |   diff4_y > -1: East (3.0/1.0)
+|   |   |   |   |   |   |   |   |   diff1_x > -10
+|   |   |   |   |   |   |   |   |   |   diff4_y <= -3: North (2.0)
+|   |   |   |   |   |   |   |   |   |   diff4_y > -3: South (2.0)
+|   |   |   |   |   |   |   |   legal_West = True
+|   |   |   |   |   |   |   |   |   ghost1_alive = False
+|   |   |   |   |   |   |   |   |   |   diff3_x <= 2
+|   |   |   |   |   |   |   |   |   |   |   ghost3_alive = False
+|   |   |   |   |   |   |   |   |   |   |   |   diff4_x <= -1
+|   |   |   |   |   |   |   |   |   |   |   |   |   pacman_pos_x <= 25: West (5.0/1.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   pacman_pos_x > 25
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   diff4_x <= -2: West (3.0/1.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   diff4_x > -2: North (3.0)
+|   |   |   |   |   |   |   |   |   |   |   |   diff4_x > -1
+|   |   |   |   |   |   |   |   |   |   |   |   |   diff2_y <= -3
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   diff4_y <= -3
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   pacman_pos_y <= 6: East (2.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   pacman_pos_y > 6: West (3.0/1.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   diff4_y > -3
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   diff4_y <= 3
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   legal_South = False
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   diff2_y <= -4: East (4.0/1.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   diff2_y > -4: North (4.0/1.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   legal_South = True
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   pacman_pos_x <= 17
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   pacman_pos_x <= 7: North (2.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   pacman_pos_x > 7
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   diff4_x <= 4: South (4.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   diff4_x > 4: East (2.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   pacman_pos_x > 17
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   diff4_y <= 0: East (6.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   diff4_y > 0
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   pacman_pos_x <= 21
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   pacman_pos_x <= 18: East (2.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   pacman_pos_x > 18: North (11.0/2.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   pacman_pos_x > 21
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   pacman_pos_x <= 25: East (5.0/2.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   pacman_pos_x > 25
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   diff4_y <= 1: North (4.0/1.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   diff4_y > 1: East (2.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   diff4_y > 3: North (6.0/1.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   diff2_y > -3: North (6.0/3.0)
+|   |   |   |   |   |   |   |   |   |   |   ghost3_alive = True: South (23.0/10.0)
+|   |   |   |   |   |   |   |   |   |   diff3_x > 2
+|   |   |   |   |   |   |   |   |   |   |   pacman_pos_x <= 8
+|   |   |   |   |   |   |   |   |   |   |   |   diff4_x <= 14
+|   |   |   |   |   |   |   |   |   |   |   |   |   diff3_y <= 2: East (7.0/1.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   diff3_y > 2: North (3.0/1.0)
+|   |   |   |   |   |   |   |   |   |   |   |   diff4_x > 14
+|   |   |   |   |   |   |   |   |   |   |   |   |   diff4_x <= 16
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   diff3_x <= 13: East (7.0/2.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   diff3_x > 13: West (2.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   diff4_x > 16: East (3.0)
+|   |   |   |   |   |   |   |   |   |   |   pacman_pos_x > 8
+|   |   |   |   |   |   |   |   |   |   |   |   diff3_x <= 11
+|   |   |   |   |   |   |   |   |   |   |   |   |   diff3_x <= 3
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   pacman_pos_x <= 17
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   pacman_pos_x <= 16
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   diff4_x <= 11: East (2.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   diff4_x > 11: North (4.0/1.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   pacman_pos_x > 16: North (7.0/1.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   pacman_pos_x > 17: East (2.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   diff3_x > 3: East (29.0)
+|   |   |   |   |   |   |   |   |   |   |   |   diff3_x > 11
+|   |   |   |   |   |   |   |   |   |   |   |   |   pacman_pos_x <= 9: North (10.0/1.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   pacman_pos_x > 9: East (2.0)
+|   |   |   |   |   |   |   |   |   ghost1_alive = True
+|   |   |   |   |   |   |   |   |   |   diff1_x <= -1
+|   |   |   |   |   |   |   |   |   |   |   diff1_x <= -3
+|   |   |   |   |   |   |   |   |   |   |   |   diff1_y <= 0: West (5.0)
+|   |   |   |   |   |   |   |   |   |   |   |   diff1_y > 0: East (2.0)
+|   |   |   |   |   |   |   |   |   |   |   diff1_x > -3
+|   |   |   |   |   |   |   |   |   |   |   |   legal_South = False: West (2.0)
+|   |   |   |   |   |   |   |   |   |   |   |   legal_South = True: South (15.0/4.0)
+|   |   |   |   |   |   |   |   |   |   diff1_x > -1
+|   |   |   |   |   |   |   |   |   |   |   diff1_y <= 4
+|   |   |   |   |   |   |   |   |   |   |   |   diff3_y <= -2: East (5.0/1.0)
+|   |   |   |   |   |   |   |   |   |   |   |   diff3_y > -2: North (2.0)
+|   |   |   |   |   |   |   |   |   |   |   diff1_y > 4: North (2.0/1.0)
+|   |   |   |   |   |   |   ghost2_alive = True
+|   |   |   |   |   |   |   |   legal_South = False: East (2.0/1.0)
+|   |   |   |   |   |   |   |   legal_South = True
+|   |   |   |   |   |   |   |   |   diff3_y <= 4: South (23.0/5.0)
+|   |   |   |   |   |   |   |   |   diff3_y > 4: East (5.0/1.0)
+|   |   |   |   |   |   diff2_y > -1
+|   |   |   |   |   |   |   ghost4_alive = False: West (10.0/1.0)
+|   |   |   |   |   |   |   ghost4_alive = True
+|   |   |   |   |   |   |   |   pacman_pos_y <= 4: South (2.0/1.0)
+|   |   |   |   |   |   |   |   pacman_pos_y > 4
+|   |   |   |   |   |   |   |   |   pacman_pos_y <= 6
+|   |   |   |   |   |   |   |   |   |   diff3_y <= -2: East (2.0)
+|   |   |   |   |   |   |   |   |   |   diff3_y > -2
+|   |   |   |   |   |   |   |   |   |   |   legal_South = False: East (2.0/1.0)
+|   |   |   |   |   |   |   |   |   |   |   legal_South = True
+|   |   |   |   |   |   |   |   |   |   |   |   diff4_y <= 0: North (2.0)
+|   |   |   |   |   |   |   |   |   |   |   |   diff4_y > 0: West (3.0)
+|   |   |   |   |   |   |   |   |   pacman_pos_y > 6: East (3.0)
+|   |   |   |   |   diff4_x > 18
+|   |   |   |   |   |   diff3_x <= 5: Stop (3.0/1.0)
+|   |   |   |   |   |   diff3_x > 5
+|   |   |   |   |   |   |   pacman_pos_y <= 8
+|   |   |   |   |   |   |   |   diff2_x <= 3: North (5.0)
+|   |   |   |   |   |   |   |   diff2_x > 3
+|   |   |   |   |   |   |   |   |   ghost1_alive = False: East (3.0)
+|   |   |   |   |   |   |   |   |   ghost1_alive = True
+|   |   |   |   |   |   |   |   |   |   diff3_y <= -3: North (2.0)
+|   |   |   |   |   |   |   |   |   |   diff3_y > -3: East (3.0)
+|   |   |   |   |   |   |   pacman_pos_y > 8: East (4.0)
+|   |   |   |   diff2_y > 0
+|   |   |   |   |   pacman_pos_x <= 9
+|   |   |   |   |   |   diff2_x <= 1: North (18.0/4.0)
+|   |   |   |   |   |   diff2_x > 1
+|   |   |   |   |   |   |   diff1_y <= -2: East (7.0/1.0)
+|   |   |   |   |   |   |   diff1_y > -2
+|   |   |   |   |   |   |   |   pacman_pos_x <= 3: East (2.0)
+|   |   |   |   |   |   |   |   pacman_pos_x > 3
+|   |   |   |   |   |   |   |   |   legal_South = False
+|   |   |   |   |   |   |   |   |   |   diff1_y <= 1: East (2.0)
+|   |   |   |   |   |   |   |   |   |   diff1_y > 1: North (3.0)
+|   |   |   |   |   |   |   |   |   legal_South = True: North (10.0/1.0)
+|   |   |   |   |   pacman_pos_x > 9
+|   |   |   |   |   |   pacman_pos_y <= 10: Stop (7.0/2.0)
+|   |   |   |   |   |   pacman_pos_y > 10: North (2.0)
+|   |   diff3_x > 14
+|   |   |   pacman_pos_y <= 7: East (9.0/1.0)
+|   |   |   pacman_pos_y > 7
+|   |   |   |   legal_South = False: West (3.0/1.0)
+|   |   |   |   legal_South = True
+|   |   |   |   |   legal_North = False
+|   |   |   |   |   |   diff3_x <= 16: Stop (22.0/2.0)
+|   |   |   |   |   |   diff3_x > 16
+|   |   |   |   |   |   |   diff1_y <= -9: South (3.0)
+|   |   |   |   |   |   |   diff1_y > -9: Stop (4.0)
+|   |   |   |   |   legal_North = True: South (16.0)
+
+Number of Leaves  : 	111
+
+Size of the tree : 	221
+
+
+Time taken to build model: 0.03 seconds
+
+=== Evaluation on test set ===
+
+Time taken to test model on supplied test set: 0.01 seconds
+
+=== Summary ===
+
+Correctly Classified Instances         408               56.044  %
+Incorrectly Classified Instances       320               43.956  %
+Kappa statistic                          0.4293
+Mean absolute error                      0.1567
+Root mean squared error                  0.3486
+Relative absolute error                 60.879  %
+Root relative squared error             97.1053 %
+Total Number of Instances              728     
+
+=== Detailed Accuracy By Class ===
+
+                 TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
+                 0.694    0.083    0.830      0.694    0.756      0.639    0.823     0.766     East
+                 0.568    0.094    0.573      0.568    0.570      0.476    0.764     0.437     North
+                 0.298    0.087    0.309      0.298    0.303      0.214    0.785     0.293     South
+                 0.275    0.061    0.441      0.275    0.339      0.262    0.720     0.367     Stop
+                 0.681    0.223    0.411      0.681    0.513      0.386    0.764     0.393     West
+                 ?        0.000    ?          ?        ?          ?        ?         ?         None
+Weighted Avg.    0.560    0.108    0.587      0.560    0.563      0.457    0.781     0.523     
+
+=== Confusion Matrix ===
+
+   a   b   c   d   e   f   <-- classified as
+ 186  15   8   1  58   0 |   a = East
+   4  75  41   1  11   0 |   b = North
+  17  28  25  14   0   0 |   c = South
+   9   6   1  30  63   0 |   d = Stop
+   8   7   6  22  92   0 |   e = West
+   0   0   0   0   0   0 |   f = None
+

@@ -1,0 +1,253 @@
+=== Run information ===
+
+Scheme:       weka.classifiers.rules.PART -C 0.25 -M 2
+Relation:     training_tutorial1.arff-weka.filters.unsupervised.attribute.Remove-R1-3,11-12,25-28,33-35,37-weka.filters.unsupervised.attribute.AddExpression-Ea12-a1-Ndiff1_x-weka.filters.unsupervised.attribute.AddExpression-Ea14-a1-Ndiff2_x-weka.filters.unsupervised.attribute.AddExpression-Ea16-a1-Ndiff3_x-weka.filters.unsupervised.attribute.AddExpression-Ea18-a1-Ndiff4_x-weka.filters.unsupervised.attribute.AddExpression-Ea13-a2-Ndiff1_y-weka.filters.unsupervised.attribute.AddExpression-Ea15-a2-Ndiff2_y-weka.filters.unsupervised.attribute.AddExpression-Ea17-a2-Ndiff3_y-weka.filters.unsupervised.attribute.AddExpression-Ea19-a2-Ndiff4_y-weka.filters.unsupervised.attribute.Remove-R12-23-weka.filters.unsupervised.attribute.Normalize-S1.0-T0.0-weka.filters.unsupervised.attribute.NominalToBinary-Rfirst-last-weka.filters.unsupervised.attribute.Reorder-R1,2,3,4,5,6,7,8,9,10,11,13,14,15,16,17,18,19,20,12
+Instances:    750
+Attributes:   20
+              pacman_pos_x
+              pacman_pos_y
+              legal_North=True
+              legal_South=True
+              legal_East=True
+              legal_West=True
+              legal_Stop=True
+              ghost1_alive=True
+              ghost2_alive=True
+              ghost3_alive=True
+              ghost4_alive=True
+              diff1_x
+              diff2_x
+              diff3_x
+              diff4_x
+              diff1_y
+              diff2_y
+              diff3_y
+              diff4_y
+              pacman_action
+Test mode:    user supplied test set:  size unknown (reading incrementally)
+
+=== Classifier model (full training set) ===
+
+PART decision list
+------------------
+
+legal_East=True <= 0 AND
+diff2_x <= 0.764706 AND
+legal_North=True > 0 AND
+diff1_x > 0.388889 AND
+ghost4_alive=True > 0 AND
+diff2_x <= 0.647059: North (101.0)
+
+pacman_pos_x <= 0 AND
+pacman_pos_y > 0.294118: South (36.0)
+
+legal_East=True <= 0 AND
+legal_West=True <= 0 AND
+diff2_x > 0.647059: North (10.0)
+
+legal_East=True <= 0 AND
+pacman_pos_y <= 0.764706 AND
+ghost1_alive=True <= 0: South (26.0/2.0)
+
+pacman_pos_y > 0.764706 AND
+ghost3_alive=True > 0 AND
+diff2_x <= 0.764706 AND
+diff3_x <= 0.536585: West (45.0/2.0)
+
+legal_North=True <= 0 AND
+diff4_x > 0.131579 AND
+ghost4_alive=True > 0 AND
+pacman_pos_y <= 0.588235 AND
+diff4_y > 0.785714: East (47.0)
+
+diff4_x > 0.289474 AND
+diff2_y > 0.555556 AND
+legal_North=True > 0 AND
+diff2_x > 0.529412 AND
+pacman_pos_y <= 0.529412: North (27.0/1.0)
+
+diff4_x > 0.289474 AND
+ghost4_alive=True > 0 AND
+diff2_x <= 0.235294 AND
+ghost3_alive=True <= 0: East (24.0)
+
+diff4_x > 0.289474 AND
+pacman_pos_x > 0.653846 AND
+diff3_x <= 0.536585: North (20.0/1.0)
+
+diff4_x > 0.289474 AND
+ghost4_alive=True > 0 AND
+diff1_y <= 0.535714 AND
+legal_South=True <= 0 AND
+ghost3_alive=True > 0: East (37.0)
+
+diff4_x > 0.289474 AND
+ghost4_alive=True > 0 AND
+diff3_y <= 0.551724 AND
+legal_East=True > 0 AND
+diff1_y <= 0.428571 AND
+ghost3_alive=True > 0 AND
+legal_West=True > 0 AND
+diff3_x > 0.536585 AND
+diff2_x > 0.705882: East (35.0/1.0)
+
+diff1_y > 0.535714 AND
+diff1_x > 0.722222 AND
+legal_East=True > 0: East (23.0/1.0)
+
+diff1_y > 0.535714 AND
+legal_North=True <= 0 AND
+legal_South=True <= 0 AND
+diff2_y <= 0.814815: West (11.0)
+
+diff1_y > 0.535714 AND
+legal_North=True > 0 AND
+legal_West=True > 0 AND
+diff1_x <= 0.694444 AND
+legal_South=True > 0: West (31.0/2.0)
+
+diff1_y > 0.535714 AND
+legal_North=True > 0 AND
+diff4_y > 0.178571: North (29.0)
+
+ghost4_alive=True > 0 AND
+diff1_x > 0.611111 AND
+diff2_x <= 0.705882 AND
+diff2_x > 0.5 AND
+diff1_x <= 0.722222 AND
+diff2_x > 0.676471: South (15.0)
+
+ghost4_alive=True > 0 AND
+pacman_pos_x <= 0.730769 AND
+diff1_x <= 0.611111 AND
+diff4_x > 0.552632 AND
+ghost2_alive=True <= 0 AND
+pacman_pos_x <= 0.461538: East (14.0)
+
+ghost4_alive=True > 0 AND
+diff4_x > 0.552632 AND
+diff1_x <= 0.722222 AND
+diff1_y <= 0.392857 AND
+diff3_y <= 0.517241 AND
+pacman_pos_x > 0.384615 AND
+diff4_y <= 0.5: South (7.0)
+
+ghost4_alive=True > 0 AND
+pacman_pos_x <= 0.730769 AND
+diff4_x <= 0.552632 AND
+pacman_pos_y <= 0.705882 AND
+legal_North=True <= 0 AND
+legal_South=True <= 0: East (11.0)
+
+ghost4_alive=True > 0 AND
+diff4_x <= 0.289474 AND
+diff4_y <= 0.535714: South (10.0)
+
+ghost4_alive=True > 0 AND
+diff4_x <= 0.552632 AND
+diff1_y > 0.142857 AND
+diff4_x > 0.289474 AND
+legal_South=True > 0 AND
+diff3_y <= 0.551724: East (40.0/4.0)
+
+legal_South=True <= 0 AND
+diff4_x <= 0.342105 AND
+ghost4_alive=True <= 0 AND
+diff2_y <= 0.074074: East (4.0)
+
+legal_South=True <= 0 AND
+ghost4_alive=True > 0 AND
+diff2_y <= 0.407407: North (3.0)
+
+diff1_x <= 0.361111 AND
+pacman_pos_x <= 0.538462: East (11.0/2.0)
+
+legal_West=True <= 0 AND
+legal_North=True <= 0: East (4.0/1.0)
+
+legal_South=True <= 0 AND
+legal_North=True <= 0: West (4.0)
+
+diff1_x > 0.694444 AND
+diff1_y <= 0.535714 AND
+diff1_x <= 0.722222: South (17.0)
+
+legal_West=True <= 0 AND
+ghost3_alive=True <= 0: North (4.0/1.0)
+
+diff2_x > 0.676471 AND
+diff2_y <= 0.555556 AND
+diff1_x <= 0.611111: South (11.0/1.0)
+
+ghost3_alive=True <= 0 AND
+legal_North=True > 0 AND
+diff2_x <= 0.676471 AND
+ghost2_alive=True > 0: West (28.0/1.0)
+
+ghost1_alive=True <= 0 AND
+diff3_x <= 0.560976: North (10.0/2.0)
+
+diff3_x > 0.536585 AND
+diff2_y <= 0.592593 AND
+ghost1_alive=True > 0 AND
+diff2_y > 0.296296 AND
+diff1_x <= 0.694444: West (11.0/1.0)
+
+diff3_x > 0.536585 AND
+ghost2_alive=True <= 0: East (9.0)
+
+ghost4_alive=True <= 0 AND
+ghost3_alive=True > 0 AND
+diff3_x > 0.512195: South (18.0/2.0)
+
+ghost4_alive=True <= 0 AND
+diff3_x > 0.439024: West (8.0/1.0)
+
+legal_South=True > 0 AND
+diff1_x <= 0.611111: North (4.0)
+
+diff1_y > 0.535714: North (3.0/1.0)
+
+: East (2.0)
+
+Number of Rules  : 	38
+
+
+Time taken to build model: 0.05 seconds
+
+=== Evaluation on test set ===
+
+Time taken to test model on supplied test set: 0 seconds
+
+=== Summary ===
+
+Correctly Classified Instances         237               54.4828 %
+Incorrectly Classified Instances       198               45.5172 %
+Kappa statistic                          0.3672
+Mean absolute error                      0.1534
+Root mean squared error                  0.38  
+Relative absolute error                 62.9552 %
+Root relative squared error            109.1966 %
+Total Number of Instances              435     
+
+=== Detailed Accuracy By Class ===
+
+                 TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
+                 0.611    0.208    0.675      0.611    0.641      0.410    0.738     0.630     East
+                 0.768    0.317    0.360      0.768    0.490      0.360    0.775     0.392     North
+                 0.473    0.050    0.768      0.473    0.586      0.507    0.701     0.536     South
+                 ?        0.000    ?          ?        ?          ?        ?         ?         Stop
+                 0.180    0.045    0.393      0.180    0.247      0.191    0.597     0.209     West
+                 ?        0.000    ?          ?        ?          ?        ?         ?         None
+Weighted Avg.    0.545    0.165    0.600      0.545    0.543      0.395    0.716     0.502     
+
+=== Confusion Matrix ===
+
+   a   b   c   d   e   f   <-- classified as
+ 110  54   1   0  15   0 |   a = East
+   9  63   9   0   1   0 |   b = North
+  29  29  53   0   1   0 |   c = South
+   0   0   0   0   0   0 |   d = Stop
+  15  29   6   0  11   0 |   e = West
+   0   0   0   0   0   0 |   f = None
+
