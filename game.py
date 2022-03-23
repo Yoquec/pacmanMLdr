@@ -633,7 +633,7 @@ class Game(object):
 
         #TODO:OPEN FILE
         #NOTE: We first need to check if the file is empty to write any necessary headers. Also check if it exits
-        CSV_FILE_NAME = "training_keyboard.arff"
+        CSV_FILE_NAME = "test_auto.arff"
 
         if CSV_FILE_NAME in os.listdir():
             with open(CSV_FILE_NAME, "r") as file_check:
