@@ -67,18 +67,40 @@ class Weka:
 		return pred
 
 ################################# DEBUG ##############################################
-#weka = Weka()
-#weka.start_jvm()
+if __name__ == "__main__":
+    import tkinter
 
-#x = [1.51793,12.79,3.5,1.12,73.03,0.64,8.77,0,0]
-#x = [1.51299,14.4,1.74,1.54,74.55,0,7.59,0,0]
-#print(weka.predict("j48.model", x, "./glass.arff"))
+    weka = Weka()
+    weka.start_jvm()
 
-#x = ['med','med','5more','more','big','high']
-#print(weka.predict("id3.model", x, "./cars.arff"))
+    def _destroy_window(event=None):
+        global _root_window
+        _root_window.destroy()
+        #_root_window = None
+        print("DESTROY")
+        sys.exit
 
-#x = ['M',0.455,0.365,0.095,0.514,0.2245,0.101,0.15]
-#print(weka.predict("m5p.model", x, "./abalone.arff"))
+    # Create the root window
+    _root_window = tkinter.Tk()
+    _root_window.protocol('WM_DELETE_WINDOW', _destroy_window)
+    _root_window.title('Graphics Window')
+    _root_window.resizable(0, 0)
 
-#weka.stop_jvm()
+    _canvas = tkinter.Canvas(_root_window, width=630.0, height=545.0)
+    print("_canvas created")
+    # x = [1.51793,12.79,3.5,1.12,73.03,0.64,8.77,0,0]
+    # x = [1.51299,14.4,1.74,1.54,74.55,0,7.59,0,0]
+    # print(weka.predict("j48.model", x, "./glass.arff"))
+
+    # x = ['med','med','5more','more','big','high']
+    # print(weka.predict("id3.model", x, "./cars.arff"))
+
+    # x = ['M',0.455,0.365,0.095,0.514,0.2245,0.101,0.15]
+    # print(weka.predict("m5p.model", x, "./abalone.arff"))
+
+    x = [12, 10, 'True', 'True', 'True', 'True', 'True', 'True', 'True', 'True', 'True', -7, -7, 1, 1, -4, 2, -4, 2]
+    strPred = weka.predict("./RFmodel.model", x, "./salidaFlow.arff")
+    print(strPred)
+
+    weka.stop_jvm()
 

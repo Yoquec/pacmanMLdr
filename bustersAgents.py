@@ -1,5 +1,4 @@
 from __future__ import print_function
-from wekaI import Weka
 from tkinter.tix import Tree
 from typing import Tuple, List
 # import csv bustersAgents.py
@@ -25,6 +24,7 @@ from keyboardAgents import KeyboardAgent
 import inference
 import busters
 from AstarTest import AstarNode, AstarGrid
+from wekaI import Weka
 
 class NullGraphics(object):
     "Placeholder for graphics"
@@ -462,11 +462,7 @@ class AutomaticAgent(BustersAgent):
         self.inferenceModules = [inferenceType(a) for a in ghostAgents]
         self.observeEnable = observeEnable
         self.elapseTimeEnable = elapseTimeEnable
-
-
-        # Initialize weka
-        self.weka = Weka()
-        self.weka.start_jvm()
+        
 
     def getAction(self, gameState, grid: AstarGrid):
         "Redefined getAction method to include the map grid"
@@ -482,6 +478,11 @@ class AutomaticAgent(BustersAgent):
     def chooseAction(self, gameState):
         """Class which will be implementing the automatic
         movement"""
+
+        if self.countActions == 0: 
+            # Initialize weka
+            self.weka = Weka()
+            self.weka.start_jvm()
 
         # Increment the tick counter
         self.countActions = self.countActions + 1
@@ -572,12 +573,15 @@ class AutomaticAgent(BustersAgent):
                 diff_ys[3]
                 ]
 
+        # print(predictInstance)
         # NOTE: Call the model for the prediction
 
         strAction = self.weka.predict(
-                "./RFmodel",
+                "./RFmodel_final.model",
                 predictInstance,
-                "./salidaFlow.arff"
+                "./trainRF_treated.arff"
                 )
 
+
+        # return "East"
         return strAction
