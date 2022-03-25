@@ -79,8 +79,10 @@ class BustersAgent(object):
         self.observeEnable = observeEnable
         self.elapseTimeEnable = elapseTimeEnable
         
-
         
+    def stop_jvm(self) -> None:
+        """Base class to stop the jvm if initialized"""
+        return
 
     def registerInitialState(self, gameState):
         "Initializes beliefs and inference modules"
@@ -457,13 +459,6 @@ class AutomaticAgent(BustersAgent):
     """Class to represent the automatic agent that
     uses Machine Learning"""
 
-    def __init__(self, index = 0, inference = "ExactInference", ghostAgents = None, observeEnable = True, elapseTimeEnable = True):
-        inferenceType = util.lookup(inference, globals())
-        self.inferenceModules = [inferenceType(a) for a in ghostAgents]
-        self.observeEnable = observeEnable
-        self.elapseTimeEnable = elapseTimeEnable
-        
-
     def getAction(self, gameState, grid: AstarGrid):
         "Redefined getAction method to include the map grid"
         # Remember to accept the grid but do nothing with it
@@ -474,6 +469,9 @@ class AutomaticAgent(BustersAgent):
         BustersAgent.registerInitialState(self, gameState)
         self.distancer = Distancer(gameState.data.layout, False)
         self.countActions = 0
+
+    def stop_jvm(self) -> None:
+        return self.weka.stop_jvm()
 
     def chooseAction(self, gameState):
         """Class which will be implementing the automatic
@@ -573,7 +571,6 @@ class AutomaticAgent(BustersAgent):
                 diff_ys[3]
                 ]
 
-        # print(predictInstance)
         # NOTE: Call the model for the prediction
 
         strAction = self.weka.predict(
@@ -582,6 +579,4 @@ class AutomaticAgent(BustersAgent):
                 "./trainRF_treated.arff"
                 )
 
-
-        # return "East"
         return strAction
