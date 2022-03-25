@@ -24,6 +24,7 @@ from keyboardAgents import KeyboardAgent
 import inference
 import busters
 from AstarTest import AstarNode, AstarGrid
+from wekaI import Weka
 
 class NullGraphics(object):
     "Placeholder for graphics"
@@ -77,6 +78,9 @@ class BustersAgent(object):
         self.inferenceModules = [inferenceType(a) for a in ghostAgents]
         self.observeEnable = observeEnable
         self.elapseTimeEnable = elapseTimeEnable
+        
+
+        
 
     def registerInitialState(self, gameState):
         "Initializes beliefs and inference modules"
@@ -448,3 +452,136 @@ class BasicAgentAA(BustersAgent):
             
         #We thus calculated which is closer acording to Astar
         return action# }}}
+
+class AutomaticAgent(BustersAgent):
+    """Class to represent the automatic agent that
+    uses Machine Learning"""
+
+    def __init__(self, index = 0, inference = "ExactInference", ghostAgents = None, observeEnable = True, elapseTimeEnable = True):
+        inferenceType = util.lookup(inference, globals())
+        self.inferenceModules = [inferenceType(a) for a in ghostAgents]
+        self.observeEnable = observeEnable
+        self.elapseTimeEnable = elapseTimeEnable
+        
+
+    def getAction(self, gameState, grid: AstarGrid):
+        "Redefined getAction method to include the map grid"
+        # Remember to accept the grid but do nothing with it
+        return self.chooseAction(gameState)
+
+    def registerInitialState(self, gameState):
+        """Copied from BasicAgentAA"""
+        BustersAgent.registerInitialState(self, gameState)
+        self.distancer = Distancer(gameState.data.layout, False)
+        self.countActions = 0
+
+    def chooseAction(self, gameState):
+        """Class which will be implementing the automatic
+        movement"""
+
+        if self.countActions == 0: 
+            # Initialize weka
+            self.weka = Weka()
+            self.weka.start_jvm()
+
+        # Increment the tick counter
+        self.countActions = self.countActions + 1
+
+        # NOTE: Scraping and preparing the data for the
+        # prediction model
+
+        # Get the pacman pos
+        pacman_pos = gameState.getPacmanPosition()
+
+        # Check for legal movements
+            # Create temp bool array
+        legal = [False, False, False, False, False]
+            # Get the game state array for the legal actions
+        observed_legal = gameState.getLegalActions()
+
+        if "North" in observed_legal:
+            legal[0]=True
+        if "South" in observed_legal:
+            legal[1]=True
+        if "East" in observed_legal:
+            legal[2]=True
+        if "West" in observed_legal:
+            legal[3]=True
+        if "Stop" in observed_legal:
+            legal[4]=True
+
+        # Fix getLivingGhosts()
+            # It returns a list of length getNumAgents()
+            # Where the first element (pacman) is always false
+            # and depending on which ghosts are alive sets a bool
+        ghost_living = [False, False, False, False]
+        ghost_livingState = gameState.getLivingGhosts()
+
+        for i in range(len(ghost_livingState) - 1):
+            if ghost_livingState[i + 1]:
+                ghost_living[i] = True
+
+
+        # Fix ghostPosition 
+            # Ghost positions are stricly positive, so 
+            # negative values will indicate that the ghosts do
+            # not exist
+        ghost_positions = [
+                [-1, -1],
+                [-1, -1],
+                [-1, -1],
+                [-1, -1]
+                ]
+        ghost_positionsState = gameState.getGhostPositions()
+
+            # Change the values in ghost_positions depending on the value of the gameState
+        for i in range(len(ghost_positionsState)):
+            gPos = ghost_positionsState[i]
+            for j in range(2):
+                ghost_positions[i][j] = gPos[j]
+
+        # Prepare the diff for the x values
+            #Set initial diff values
+        diff_xs = [-999,-999,-999,-999]
+        diff_ys = [-999,-999,-999,-999]
+
+        for i in range(4):
+            diff_xs[i] = ghost_positions[i][0] - pacman_pos[0]
+            diff_ys[i] = ghost_positions[i][1] - pacman_pos[1]
+
+
+        # NOTE: Build the predict instance
+        predictInstance = [
+                pacman_pos[0],
+                pacman_pos[1],
+                str(legal[0]),                      #legal_North
+                str(legal[1]),                      #legal_South
+                str(legal[2]),                      #legal_East
+                str(legal[3]),                      #legal_West
+                str(legal[4]),                      #legal_Stop
+                str(ghost_living[0]),               #ghost1_alive
+                str(ghost_living[1]),               #ghost2_alive
+                str(ghost_living[2]),               #ghost3_alive
+                str(ghost_living[3]),               #ghost4_alive
+                diff_xs[0],
+                diff_xs[1],
+                diff_xs[2],
+                diff_xs[3],
+                diff_ys[0],
+                diff_ys[1],
+                diff_ys[2],
+                diff_ys[3]
+                ]
+
+        # print(predictInstance)
+        # NOTE: Call the model for the prediction
+
+        strAction = self.weka.predict(
+                "./RFmodel_final.model",
+                predictInstance,
+                "./trainRF_treated.arff"
+                )
+
+
+        # return "East"
+        return strAction
