@@ -789,7 +789,7 @@ class Game(object):
         file_hand.close()
 
         # Stop the jvm
-        self.agents[0].weka.stop_jvm()
+        self.agents[0].stop_jvm()
 
         # inform a learning agent of the game result
         for agentIndex, agent in enumerate(self.agents):
