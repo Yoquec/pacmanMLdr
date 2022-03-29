@@ -1,0 +1,26 @@
+Tester:     weka.experiment.PairedCorrectedTTester -G 4,5,6 -D 1 -R 2 -S 0.05 -result-matrix "weka.experiment.ResultMatrixPlainText -mean-prec 2 -stddev-prec 2 -col-name-width 0 -row-name-width 25 -mean-width 3 -stddev-width 2 -sig-width 1 -count-width 5 -print-col-names -print-row-names -enum-col-names"
+Analysing:  Root_mean_squared_error
+Datasets:   1
+Resultsets: 8
+Confidence: 0.05 (two tailed)
+Sorted by:  -
+Date:       26/3/22 15:51
+
+
+Dataset                   (1) rules.Zer | (2) funct (3) lazy. (4) lazy.I (5) rules (6) trees (7) trees (8) funct
+----------------------------------------------------------------------------------------------------------------
+'training_tutorial1.arff-(100)   785.79 |   69.77 *   96.39 *   109.21 *   65.64 *   54.95 *   66.99 *   66.24 *
+----------------------------------------------------------------------------------------------------------------
+                                (v/ /*) |   (0/0/1)   (0/0/1)    (0/0/1)   (0/0/1)   (0/0/1)   (0/0/1)   (0/0/1)
+
+
+Key:
+(1) rules.ZeroR '' 48055541465867954
+(2) functions.SimpleLinearRegression '' 1679336022895414137
+(3) lazy.IBk '-K 1 -W 0 -A \"weka.core.neighboursearch.LinearNNSearch -A \\\"weka.core.EuclideanDistance -R first-last\\\"\"' -3080186098777067172
+(4) lazy.IBk '-K 3 -W 0 -A \"weka.core.neighboursearch.LinearNNSearch -A \\\"weka.core.EuclideanDistance -R first-last\\\"\"' -3080186098777067172
+(5) rules.M5Rules '-M 4.0 -num-decimal-places 4' -1746114858746563180
+(6) trees.RandomForest '-P 100 -I 100 -num-slots 1 -K 0 -M 1.0 -V 0.001 -S 1' 1116839470751428698
+(7) trees.M5P '-M 4.0 -num-decimal-places 4' -6118439039768244417
+(8) functions.LinearRegression '-S 0 -R 1.0E-8 -num-decimal-places 4' -3364580862046573747
+

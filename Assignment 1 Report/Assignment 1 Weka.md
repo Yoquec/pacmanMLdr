@@ -106,6 +106,79 @@ They only differ in the prediction accuracy of the automatic agent, where it see
 
 #### Final selection
 After seeing the results in both datasets, it can be seen that both `KNN` and `Random Forest` algorithms have a similar predictive power, but the slight superiority of the `Random Forest` and the complication of scaling the dataset using *Weka* from within *python* makes us choose the `Random Forest` model as a possible candidate to build the automatic agent.
+## Phase 3: Prediction
+#### Weka's Attribute selection
+In this case weka's attribute selection brings the same results as before.
+For example, when testing for the best attributes in the keyboard dataset, the **ghost4_position** rose up first, which is more likely to be independent from the following score.
+
+It is important to point out the importance of the **current tickscore** for the following score as all the possible possibilities on the future will be 
+- **-1** In any normal tick where you lose a point automatically.
+- **+99** When you eat a dot
+- **+199** When you eat a ghost
+- **+299** When the combination of ghost + dot
+
+So we also decide to quit this method to choose the attributes and select the different attributes ourselves.
+
+### Feature selection
+Now we will errase the useless features
+- **Ticks** -> Not good as depending on the map the increase of dots per tick will be bigger or lower
+- **Directions** -> Do not bring up important information in this case as we dont care of movements.
+- **Screen dimensions** -> Is not correlated in any way 
+- **Pacman positions** -> It doesnt make a difference where you are on the screen to the ticks you have, it depends on the state game.
+- **Legal movements** -> Important to point out the distance one case, that is what this phase is based on, so we will have the legal movement always allowed when the distance is one.
+- **Ghost Num** -> Is redundant if we have the variable `Ghost Alive`.
+- **Ghost positions** -> In this case we do not have to think in the moving algorithm so the importance comes in the absolute distance not on the relative position with respect the pacman.
+- **Ghost directions** -> As ghosts move randomly, this variable is of no use because movements are assumed to be independent from one another.
+
+#### Dataset Normalization and binaritization.
+We decide to use Experimenter with all three different datasets, the standard, the one binarice to have only numeric values where we can also use knn and other algorithms and the latter, normalized.
+
+### Phase 3.2: Regression
+### Algorithm selection
+We use the experimenter for all the three different datasets from `keyboard` and `tutorial`. We see there are no significant differences between all the algorithms on the dataset so we choose the numeric one as it allows a wider range of algorithms.
+
+We chose `ZeroR` as the base model to quantify how much better or worse models where, and the choosens ones as the `LinearRegression`, `Knn` with k equals to 1 and 3 ,`RandomForest` ,`M5 & M5Rules` and also `SVM with Smoreg`   .
+
+It was quickly apparent that the models that better stood out where the `SVM`,`LinearRegression`  and both `M5` and `M5Rules`, with a special mention to the `RandomForest` model which is the ones that worked better on the testing.
+
+With these models chosen we need to advance to the testing.
+### Variables selected
+We will use two different variables to compare it with the actual results as the regression doesn't count with a field such as accuracy.
+
+In our case we will use the **Root means square error** which brings us a good approximator as it is also used in other fields, important to point out that this is an absolute variable so if the points where to get multiply by a thousend the result would increase in the same way.
+
+The second one will be the **Root relative squared error percentage** which works as a relative with respect to the total relative error from ZeroR by the percentage.
+
+### Algorithm testing
+As we see than `Knn` is the one that works the worst out of all we won't work with the normalize data and we will perform the testing with the dataset that we find more significant for the future.
+
+The other reason is the small difference between the results on the normalize and not normalize, where we see the difference at all the features less than 5 of absolute difference. 
+
+![[resultados.PNG]]
+
+
+Also important to point out the low preccision of this normalization as it should be done with the training mean and standard deviation and not with the testing as it is done in weka.
+
+
+
+#### Result
+As this dataset was not normalized, `KNN` could not be compared, so we will use the rest of the previous algorithms, which works well for our case as we get a high error on the `KNN` .
+
+<span class=centerImg>![[algorithms.PNG|500]]</span>
+
+It is apparent that the `Random Forest` algorithm have a high error even with the good results it gets previously, this change could come from a overfitting on the data and a high adaptation into the training dataset.
+
+We see that the best algorithm changes within the dataset, so we can come clear with the fact that the best algorithm when talking about the same maps for the tutorial and same maps is the `M5Rules`, but for the keyboard we find that all of them have a similar efficiency with less than a 5% difference.
+
+We can also use `LinearRegression` which is the most stable model and due to this effect it will be the best model for all the different maps bringing the best results in both cases.
+
+#### Final selection
+After seeing the results in both datasets, we can see that the best general algorithm and the best all round model would be the `LinearRegression` as it is stable with all the situations with a pretty low error being one of the top in all the different datasets.
+
+But when working with the same maps it brings up the option of using different algorithms, being the one that brings the best result in both cases the `M5Rules`.
+
+So when using the same map the final deccision will be `M5Rules`  while in the case of other maps or even unknown maps we will use the `LinearRegression` to insure a good result.
+
 
 ## Phase 4: Building an automatic agent
 In order to build the automatic Agent, we used the `Random Forest` model we talked about in the end of [[#Phase 2 2 Classification|Phase 2.2]], due to  it's apparently decent prediction accuracy and ease of use.
@@ -186,8 +259,17 @@ Even thought human-controlled agents always tend to know the most optimal route 
 As a result of this models could over-fit to this noise and do nonsensical movements 
 
 #### If you wanted to transform the regression task into classification, what would you have to do? What do you think could be the practical application of predicting the score?
+In order to swap the regression task into classification we need either to transform it into nominal with different groups or discretizing the score into different sets.
+
+As a practical application we could have the four possibilities i mention at the beginning -1,+99,+199 or +299 as they are the only possible solutions for the difference on the score and we could perform the classification task with this four possibilities. 
+
+In case you want a two class classification you could transform it into wheter you win or lose score in the next tick which implies joining the three positive possibilities mention before. 
+
+Important to point out that the first possibility will be very skewed as the results doesnt occur the same amount of times, same for the second possibility but in that case it would be less extreme diffrecence.
 
 #### What are the advantages of predicting the score over classifying the action? Justify your answer.
 If we predict the score instead of the movement we could be able to run **Reinforcement Learning techniques** to reward/punish the model for optimal/bad decisions. This would turn our problem of classifying the movement into deciding which movement maximizes our reward.
 
 #### Do you think that some improvement in the ranking could be achieved by incorporating an attribute that would indicate whether the score at the current time has dropped?
+
+We don't feel that this new attribute can bring any improvement into the ranking as we can already calculate it with the actual and following score and it doesn't bring any information. This is also due to the fact that the previous state, in not even one way, has any impact on any decision we should make.
