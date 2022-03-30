@@ -71,9 +71,7 @@ Also, as mentioned in the end of Feature selection, we binaritized *Nominal* var
 ### Algorithm selection
 When using *Weka's* experimenter, the normalized and feature extracted datasets for both `keyboard` and `tutorial` were used to compare between different models.
 
-![[Pasted image 20220320171154.png]]
-
-![[Pasted image 20220320171346.png]]
+<span class=centerImg>![[Experimenter.jpg]]</span>
 
 We chose `ZeroR` as the base model to quantify how much better or worse models where, and the chose models where `KNN` for both $\large k = 1$ $\large k = 3$, two `J48` pruned and unpruned trees, a `NaiveBayes` model and a `PART` rule decision model.
 
